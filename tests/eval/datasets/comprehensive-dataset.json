@@ -1,0 +1,74 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "harlem_high_risk_ny",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Help me. My name is Alice Vance. I live in Harlem, New York. I lost my job last month and now I'm behind on rent by two months. My landlord is threatening eviction. Can you help?"}]
+      }
+    },
+    {
+      "eval_case_id": "skid_row_extreme_risk_la",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "My name is Carlos Ramirez. I live in Skid Row, Los Angeles. I have been out of work due to medical reasons, and my landlord gave me an eviction notice yesterday. I have zero income right now."}]
+      }
+    },
+    {
+      "eval_case_id": "santa_monica_low_risk_la",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Can you help me with a client case? Her name is Clara. She lives in Santa Monica, California. She is employed full-time, current on all rent, but wants to know about local resources just in case of future emergencies."}]
+      }
+    },
+    {
+      "eval_case_id": "englewood_high_risk_chicago",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "My name is Marcus Brown. I live in Englewood, Chicago. I had my hours cut at work, and I have accumulated utility arrears and rent arrears. I'm afraid of getting evicted."}]
+      }
+    },
+    {
+      "eval_case_id": "river_oaks_low_risk_houston",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Hello, my name is Arthur Pendelton. I live in River Oaks, Houston. I am stable, but I would like to know if there are child care support vouchers or other family services in my city."}]
+      }
+    },
+    {
+      "eval_case_id": "unknown_location_moderate_risk",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Help me, my name is John Miller. I have some medical bills that are piling up and I'm one month behind on my rent. I don't want to get evicted but I'm struggling."}]
+      }
+    },
+    {
+      "eval_case_id": "unseeded_location_high_risk",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "My name is Sarah Davis. I live in Miami, Florida. I got laid off and my landlord told me I have to move out by the end of the month because I can't pay rent."}]
+      }
+    },
+    {
+      "eval_case_id": "sunnyside_high_risk_houston",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "My name is Brenda Jackson. I live in Sunnyside, Houston. I got hit with a rent increase of $200 and I cannot afford it. I'm falling behind."}]
+      }
+    },
+    {
+      "eval_case_id": "chinatown_moderate_risk_ny",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "I need help with a case. Her name is Mei Ling. She lives in Chinatown, New York. She is working part-time, but rent is taking up almost all of her paycheck. She is struggling but not yet in eviction court."}]
+      }
+    },
+    {
+      "eval_case_id": "lincoln_park_low_risk_chicago",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Can you check my risk? I'm Dave. I live in Lincoln Park, Chicago. I'm currently stable and employed, but my lease is ending and I'm worried about finding affordable apartments."}]
+      }
+    }
+  ]
+}

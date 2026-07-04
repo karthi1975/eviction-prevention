@@ -1,0 +1,676 @@
+{
+  "eval_cases": [
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do."
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "I am very sorry to hear about your situation, Sarah. Losing your job and facing medical debt while under threat of eviction is incredibly stressful. I am the Risk Profiler Agent, and I am here to help assess your situation and determine the urgency of your housing stability risk.\n\nTo give you the most accurate assessment and connect you with appropriate resources, I need one crucial piece of information:\n\n**What is the name of your city and neighborhood?**\n\nKnowing your location will allow me to check the local context, such as the area's eviction filing rate, poverty rate, and rent burden, which are key factors in your overall risk profile.\n\nOnce I have that, I can provide a full, detailed risk assessment."
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "sarah_jenkins_eviction",
+      "agent_data": {
+        "agents": {
+          "coordinator": {
+            "agent_id": "coordinator",
+            "agent_type": "LlmAgent",
+            "description": "",
+            "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+            "tools": [],
+            "sub_agents": [
+              "risk_profiler",
+              "intervention_planner"
+            ]
+          },
+          "risk_profiler": {
+            "agent_id": "risk_profiler",
+            "agent_type": "LlmAgent",
+            "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+            "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Ask for or identify the client's location (neighborhood or city). Use the search_tracts_by_location tool to find matching census tracts and FIPS GEOIDs, and then call the query_eviction_stats tool to retrieve real tract-level eviction rates, poverty rates, and rent burden statistics. You must query statistics if the client's location matches any tract in the database.\n3. Identify specific risk factors (e.g., job loss, medical bills, rent increase, high local eviction filing rate, high poverty rate) and protective factors (e.g., family support, employment, low-risk tract).\n4. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors and the tract-level eviction risk context.\n5. Write a detailed narrative summary of the client's situation, incorporating the real census-tract-level statistics (filing rates, poverty rate, rent burden) if you retrieved them.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches for census tracts by neighborhood, city, or location name.\n\nArgs:\n    location_name: The name of the neighborhood, area, or city (e.g., 'Harlem', 'Englewood', 'Skid Row', 'Chicago', 'Houston').\n\nReturns:\n    A dict containing matching census tracts and their 11-digit GEOIDs.",
+                    "name": "search_tracts_by_location",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "location_name": {
+                          "title": "Location Name",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "location_name"
+                      ],
+                      "title": "search_tracts_by_locationParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Queries detailed eviction and housing instability statistics for a census tract FIPS code.\n\nArgs:\n    geoid: The 11-digit Census Tract FIPS GEOID (e.g., '36061019701', '06037206010', '17031170500').\n\nReturns:\n    A dict containing tract-level annual eviction filings, eviction filing rate (%), poverty rate (%), and rent burden (%).",
+                    "name": "query_eviction_stats",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "geoid": {
+                          "title": "Geoid",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "geoid"
+                      ],
+                      "title": "query_eviction_statsParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          },
+          "intervention_planner": {
+            "agent_id": "intervention_planner",
+            "agent_type": "LlmAgent",
+            "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+            "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                    "name": "search_resources",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "query": {
+                          "title": "Query",
+                          "type": "string"
+                        },
+                        "category": {
+                          "title": "Category",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "query",
+                        "category"
+                      ],
+                      "title": "search_resourcesParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                    "name": "save_intervention_plan",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "client_name": {
+                          "title": "Client Name",
+                          "type": "string"
+                        },
+                        "plan_text": {
+                          "title": "Plan Text",
+                          "type": "string"
+                        },
+                        "user_query": {
+                          "title": "User Query",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "client_name",
+                        "plan_text",
+                        "user_query"
+                      ],
+                      "title": "save_intervention_planParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-b5d1d468-3912-45c2-90b3-d24713e2c3b7",
+                        "args": {
+                          "agent_name": "risk_profiler"
+                        },
+                        "name": "transfer_to_agent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-b5d1d468-3912-45c2-90b3-d24713e2c3b7",
+                        "name": "transfer_to_agent",
+                        "response": {
+                          "result": null
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "risk_profiler",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "I am very sorry to hear about your situation, Sarah. Losing your job and facing medical debt while under threat of eviction is incredibly stressful. I am the Risk Profiler Agent, and I am here to help assess your situation and determine the urgency of your housing stability risk.\n\nTo give you the most accurate assessment and connect you with appropriate resources, I need one crucial piece of information:\n\n**What is the name of your city and neighborhood?**\n\nKnowing your location will allow me to check the local context, such as the area's eviction filing rate, poverty rate, and rent burden, which are key factors in your overall risk profile.\n\nOnce I have that, I can provide a full, detailed risk assessment."
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Thank you for reaching out, David. I understand this is a very stressful situation. I am the Risk Profiler Agent, and my job is to assess your risk of housing instability and eviction so we can determine the best way to help you.\n\nTo give you the most accurate assessment, I need to know your **location**.\n\nCould you please tell me the **city and state** you live in, or even the **neighborhood**, so I can look up your local housing risk context (eviction rates, rent burden, etc.)?"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "david_chen_utility",
+      "agent_data": {
+        "agents": {
+          "coordinator": {
+            "agent_id": "coordinator",
+            "agent_type": "LlmAgent",
+            "description": "",
+            "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+            "tools": [],
+            "sub_agents": [
+              "risk_profiler",
+              "intervention_planner"
+            ]
+          },
+          "risk_profiler": {
+            "agent_id": "risk_profiler",
+            "agent_type": "LlmAgent",
+            "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+            "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Ask for or identify the client's location (neighborhood or city). Use the search_tracts_by_location tool to find matching census tracts and FIPS GEOIDs, and then call the query_eviction_stats tool to retrieve real tract-level eviction rates, poverty rates, and rent burden statistics. You must query statistics if the client's location matches any tract in the database.\n3. Identify specific risk factors (e.g., job loss, medical bills, rent increase, high local eviction filing rate, high poverty rate) and protective factors (e.g., family support, employment, low-risk tract).\n4. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors and the tract-level eviction risk context.\n5. Write a detailed narrative summary of the client's situation, incorporating the real census-tract-level statistics (filing rates, poverty rate, rent burden) if you retrieved them.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches for census tracts by neighborhood, city, or location name.\n\nArgs:\n    location_name: The name of the neighborhood, area, or city (e.g., 'Harlem', 'Englewood', 'Skid Row', 'Chicago', 'Houston').\n\nReturns:\n    A dict containing matching census tracts and their 11-digit GEOIDs.",
+                    "name": "search_tracts_by_location",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "location_name": {
+                          "title": "Location Name",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "location_name"
+                      ],
+                      "title": "search_tracts_by_locationParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Queries detailed eviction and housing instability statistics for a census tract FIPS code.\n\nArgs:\n    geoid: The 11-digit Census Tract FIPS GEOID (e.g., '36061019701', '06037206010', '17031170500').\n\nReturns:\n    A dict containing tract-level annual eviction filings, eviction filing rate (%), poverty rate (%), and rent burden (%).",
+                    "name": "query_eviction_stats",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "geoid": {
+                          "title": "Geoid",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "geoid"
+                      ],
+                      "title": "query_eviction_statsParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          },
+          "intervention_planner": {
+            "agent_id": "intervention_planner",
+            "agent_type": "LlmAgent",
+            "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+            "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                    "name": "search_resources",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "query": {
+                          "title": "Query",
+                          "type": "string"
+                        },
+                        "category": {
+                          "title": "Category",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "query",
+                        "category"
+                      ],
+                      "title": "search_resourcesParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                    "name": "save_intervention_plan",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "client_name": {
+                          "title": "Client Name",
+                          "type": "string"
+                        },
+                        "plan_text": {
+                          "title": "Plan Text",
+                          "type": "string"
+                        },
+                        "user_query": {
+                          "title": "User Query",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "client_name",
+                        "plan_text",
+                        "user_query"
+                      ],
+                      "title": "save_intervention_planParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-d54a6daa-aeb0-4901-8d64-5a51ff6fb822",
+                        "args": {
+                          "agent_name": "risk_profiler"
+                        },
+                        "name": "transfer_to_agent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-d54a6daa-aeb0-4901-8d64-5a51ff6fb822",
+                        "name": "transfer_to_agent",
+                        "response": {
+                          "result": null
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "risk_profiler",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Thank you for reaching out, David. I understand this is a very stressful situation. I am the Risk Profiler Agent, and my job is to assess your risk of housing instability and eviction so we can determine the best way to help you.\n\nTo give you the most accurate assessment, I need to know your **location**.\n\nCould you please tell me the **city and state** you live in, or even the **neighborhood**, so I can look up your local housing risk context (eviction rates, rent burden, etc.)?"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies."
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Thank you for bringing Marcus's case to me. I can certainly help conduct a proactive risk assessment.\n\nI see that Marcus is in a stable position right now (employed and caught up on rent), which is excellent. To fully assess his risk profile and identify the most relevant resources for future emergencies, I need to understand his local context. Eviction risk varies dramatically by location.\n\n**Could you please provide the city and, if possible, the neighborhood or zip code where Marcus lives?**\n\nOnce I have that information, I can look up the local housing instability context (such as eviction filing rates, poverty rates, and rent burden) to complete his risk profile."
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "general_inquiry_low_risk",
+      "agent_data": {
+        "agents": {
+          "coordinator": {
+            "agent_id": "coordinator",
+            "agent_type": "LlmAgent",
+            "description": "",
+            "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+            "tools": [],
+            "sub_agents": [
+              "risk_profiler",
+              "intervention_planner"
+            ]
+          },
+          "risk_profiler": {
+            "agent_id": "risk_profiler",
+            "agent_type": "LlmAgent",
+            "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+            "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Ask for or identify the client's location (neighborhood or city). Use the search_tracts_by_location tool to find matching census tracts and FIPS GEOIDs, and then call the query_eviction_stats tool to retrieve real tract-level eviction rates, poverty rates, and rent burden statistics. You must query statistics if the client's location matches any tract in the database.\n3. Identify specific risk factors (e.g., job loss, medical bills, rent increase, high local eviction filing rate, high poverty rate) and protective factors (e.g., family support, employment, low-risk tract).\n4. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors and the tract-level eviction risk context.\n5. Write a detailed narrative summary of the client's situation, incorporating the real census-tract-level statistics (filing rates, poverty rate, rent burden) if you retrieved them.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches for census tracts by neighborhood, city, or location name.\n\nArgs:\n    location_name: The name of the neighborhood, area, or city (e.g., 'Harlem', 'Englewood', 'Skid Row', 'Chicago', 'Houston').\n\nReturns:\n    A dict containing matching census tracts and their 11-digit GEOIDs.",
+                    "name": "search_tracts_by_location",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "location_name": {
+                          "title": "Location Name",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "location_name"
+                      ],
+                      "title": "search_tracts_by_locationParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Queries detailed eviction and housing instability statistics for a census tract FIPS code.\n\nArgs:\n    geoid: The 11-digit Census Tract FIPS GEOID (e.g., '36061019701', '06037206010', '17031170500').\n\nReturns:\n    A dict containing tract-level annual eviction filings, eviction filing rate (%), poverty rate (%), and rent burden (%).",
+                    "name": "query_eviction_stats",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "geoid": {
+                          "title": "Geoid",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "geoid"
+                      ],
+                      "title": "query_eviction_statsParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          },
+          "intervention_planner": {
+            "agent_id": "intervention_planner",
+            "agent_type": "LlmAgent",
+            "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+            "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+            "tools": [
+              {
+                "function_declarations": [
+                  {
+                    "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                    "name": "search_resources",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "query": {
+                          "title": "Query",
+                          "type": "string"
+                        },
+                        "category": {
+                          "title": "Category",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "query",
+                        "category"
+                      ],
+                      "title": "search_resourcesParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              },
+              {
+                "function_declarations": [
+                  {
+                    "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                    "name": "save_intervention_plan",
+                    "parameters_json_schema": {
+                      "properties": {
+                        "client_name": {
+                          "title": "Client Name",
+                          "type": "string"
+                        },
+                        "plan_text": {
+                          "title": "Plan Text",
+                          "type": "string"
+                        },
+                        "user_query": {
+                          "title": "User Query",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "client_name",
+                        "plan_text",
+                        "user_query"
+                      ],
+                      "title": "save_intervention_planParams",
+                      "type": "object"
+                    },
+                    "response_json_schema": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  }
+                ]
+              }
+            ],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-9919f6fb-a0af-4e01-b34f-c974933e08f7",
+                        "args": {
+                          "agent_name": "risk_profiler"
+                        },
+                        "name": "transfer_to_agent"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "coordinator",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-9919f6fb-a0af-4e01-b34f-c974933e08f7",
+                        "name": "transfer_to_agent",
+                        "response": {
+                          "result": null
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "risk_profiler",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Thank you for bringing Marcus's case to me. I can certainly help conduct a proactive risk assessment.\n\nI see that Marcus is in a stable position right now (employed and caught up on rent), which is excellent. To fully assess his risk profile and identify the most relevant resources for future emergencies, I need to understand his local context. Eviction risk varies dramatically by location.\n\n**Could you please provide the city and, if possible, the neighborhood or zip code where Marcus lives?**\n\nOnce I have that information, I can look up the local housing instability context (such as eviction filing rates, poverty rates, and rent burden) to complete his risk profile."
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

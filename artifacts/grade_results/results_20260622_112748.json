@@ -1,0 +1,1444 @@
+{
+  "eval_case_results": [
+    {
+      "eval_case_index": 0,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": 2.0,
+              "explanation": "The agent provided a very detailed and accurate risk assessment based on the user's input, correctly identifying the client, risk factors, and assigning a high risk level. The structure and content of the assessment itself are excellent. However, the overall agent's workflow (as defined by the 'coordinator' agent in the trace) dictates that after the risk assessment, an 'intervention_planner' sub-agent should find local resources and draft an intervention plan, followed by a final summary from the coordinator. The final response only includes the risk assessment and completely misses the crucial intervention planning step and the final summary, which are necessary to truly 'help' the user as requested in the prompt. Therefore, while the initial assessment is strong, the response is notably incomplete as a final solution from the perspective of the full system's capabilities and intended workflow.",
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "eval_case_index": 1,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": 5.0,
+              "explanation": "The agent accurately identified the user's name and the immediate risk factors. It then correctly proceeded to gather necessary information to build a comprehensive risk profile, presenting the missing data in a clear, structured table and asking precise follow-up questions. The response perfectly aligns with the Risk Profiler Agent's instructions and is highly relevant and well-organized for the given user prompt.",
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "eval_case_index": 2,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": 5.0,
+              "explanation": "The agent's response is excellent. It accurately assesses Marcus's low-risk profile and proactively designs a comprehensive intervention plan focused on future emergencies. Despite the `search_resources` tool only yielding one direct result (utility assistance), the agent intelligently structured the plan to include actionable steps for Marcus to create a personal safety net and research other crucial long-term resources (rental, food, legal aid). The plan is well-organized into logical sections, highly relevant to the user's prompt, and provides practical advice, including documentation and review. The final response is clear, accurate, and exceeds expectations for assisting a proactive client.",
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "summary_metrics": [
+    {
+      "metric_name": "custom_response_quality",
+      "num_cases_total": 3,
+      "num_cases_valid": 3,
+      "num_cases_error": 0,
+      "mean_score": 4.0,
+      "stdev_score": 1.7320508075688772,
+      "pass_rate": null
+    }
+  ],
+  "win_rates": null,
+  "evaluation_dataset": [
+    {
+      "bigquery_source": null,
+      "gcs_source": null,
+      "eval_cases": [
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "This is a serious situation, Sarah. I will conduct a preliminary assessment of your housing stability risk based on the information you've provided.\n\n### **Risk Profiler Assessment**\n\n| Section | Detail |\n| :--- | :--- |\n| **Client Name** | Sarah Jenkins |\n| **Eviction Risk Level** | **High** |\n| **Date of Assessment** | [Current Date] |\n\n---\n\n### **Risk Factors**\n\nThe client is facing multiple, intersecting financial and housing stability threats, placing her at an immediate and high risk of eviction.\n\n*   **Immediate Financial Crisis (High Severity):** The client is two months behind on rent, which is the direct cause of the current eviction threat.\n*   **Loss of Income (High Severity):** The client lost her job last month, eliminating her primary source of income necessary to pay rent and other bills.\n*   **Significant Debt (High Severity):** The client has incurred a \"huge hospital bill,\" which introduces massive financial strain and potential for long-term debt, diverting any available funds away from rent and necessities.\n*   **Imminent Housing Threat (Highest Severity):** The landlord is actively threatening eviction, indicating the situation has moved past a warning phase into legal risk.\n\n### **Stability Indicators**\n\n*   **Employment Status:** Currently unemployed (Negative indicator).\n*   **Support System:** No family or social support systems were mentioned (Indication of potential isolation/lack of safety net).\n*   **Financial Reserves:** Being two months behind on rent and facing a hospital bill suggests minimal or exhausted savings (Negative indicator).\n\n---\n\n### **Narrative Summary**\n\nSarah Jenkins is experiencing an acute housing crisis driven by a rapid escalation of financial shocks. The loss of her job last month eliminated her income, quickly leading to two months of rent arrears. Simultaneously, she is burdened with a significant hospital bill, which complicates any potential recovery efforts by introducing large, unexpected debt. The convergence of zero income, mounting debt, and existing rent arrears has prompted her landlord to issue an eviction threat. Given the severity of the financial distress, the lack of an immediate income source, and the active threat of eviction, Ms. Jenkins's housing stability risk is assessed as **High**. Immediate intervention focused on rent assistance, legal aid for the eviction threat, and income support is critically necessary to prevent homelessness.",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "sarah_jenkins_eviction",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+                "tools": [],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            },
+                            "user_query": {
+                              "title": "User Query",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text",
+                            "user_query"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-2389a162-4c52-44a4-ba35-3731b28d2c80",
+                            "args": {
+                              "agent_name": "risk_profiler"
+                            },
+                            "name": "transfer_to_agent",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-2389a162-4c52-44a4-ba35-3731b28d2c80",
+                            "name": "transfer_to_agent",
+                            "response": {
+                              "result": null
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "This is a serious situation, Sarah. I will conduct a preliminary assessment of your housing stability risk based on the information you've provided.\n\n### **Risk Profiler Assessment**\n\n| Section | Detail |\n| :--- | :--- |\n| **Client Name** | Sarah Jenkins |\n| **Eviction Risk Level** | **High** |\n| **Date of Assessment** | [Current Date] |\n\n---\n\n### **Risk Factors**\n\nThe client is facing multiple, intersecting financial and housing stability threats, placing her at an immediate and high risk of eviction.\n\n*   **Immediate Financial Crisis (High Severity):** The client is two months behind on rent, which is the direct cause of the current eviction threat.\n*   **Loss of Income (High Severity):** The client lost her job last month, eliminating her primary source of income necessary to pay rent and other bills.\n*   **Significant Debt (High Severity):** The client has incurred a \"huge hospital bill,\" which introduces massive financial strain and potential for long-term debt, diverting any available funds away from rent and necessities.\n*   **Imminent Housing Threat (Highest Severity):** The landlord is actively threatening eviction, indicating the situation has moved past a warning phase into legal risk.\n\n### **Stability Indicators**\n\n*   **Employment Status:** Currently unemployed (Negative indicator).\n*   **Support System:** No family or social support systems were mentioned (Indication of potential isolation/lack of safety net).\n*   **Financial Reserves:** Being two months behind on rent and facing a hospital bill suggests minimal or exhausted savings (Negative indicator).\n\n---\n\n### **Narrative Summary**\n\nSarah Jenkins is experiencing an acute housing crisis driven by a rapid escalation of financial shocks. The loss of her job last month eliminated her income, quickly leading to two months of rent arrears. Simultaneously, she is burdened with a significant hospital bill, which complicates any potential recovery efforts by introducing large, unexpected debt. The convergence of zero income, mounting debt, and existing rent arrears has prompted her landlord to issue an eviction threat. Given the severity of the financial distress, the lack of an immediate income source, and the active threat of eviction, Ms. Jenkins's housing stability risk is assessed as **High**. Immediate intervention focused on rent assistance, legal aid for the eviction threat, and income support is critically necessary to prevent homelessness.",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        },
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "Thank you, David. I understand this is an urgent and stressful situation. Receiving a final shutoff notice for electricity is a serious risk indicator, and I'm here to start the process of assessing your situation to determine the best path forward.\n\nI am the **Risk Profiler Agent**. My immediate goal is to understand the full context of your financial and housing situation so I can accurately assess your risk level.\n\nBased on the information you provided, here is my initial assessment and the information I still require:\n\n### **Initial Information and Missing Data**\n\n| Section | Current Information | Required Information for Full Profile |\n| :--- | :--- | :--- |\n| **Client Name** | David Chen | N/A |\n| **Risk Factors** | Final electricity shutoff notice; part-time income. | Are you behind on rent, and if so, by how much? |\n| **Housing Status** | Unknown | Are you renting or do you own your home? If renting, what is the monthly rent? |\n| **Income Details** | Working part-time. | How much do you earn per month on average? Is your part-time work stable? |\n| **Dependents** | Unknown | Are there other adults or children in your household? |\n| **Stability Indicators** | None provided. | Do you have any savings, family support, or are you receiving any government benefits (like SNAP or unemployment)? |\n\n**To complete your risk profile and move toward finding resources, please provide answers to the following questions:**\n\n1.  **What is your current housing situation?** Are you renting an apartment/house, or do you own your home?\n2.  **If you are renting, what is your monthly rent amount?**\n3.  **Are you currently behind on rent?** If so, by how many months, and what is the total amount owed?\n4.  **How many people (adults and children) live in your household?**\n5.  **Roughly, how much money do you bring home each month from your part-time work?**",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "david_chen_utility",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+                "tools": [],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            },
+                            "user_query": {
+                              "title": "User Query",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text",
+                            "user_query"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-8d319be2-7566-4076-acde-8e4e079fe49a",
+                            "args": {
+                              "agent_name": "risk_profiler"
+                            },
+                            "name": "transfer_to_agent",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-8d319be2-7566-4076-acde-8e4e079fe49a",
+                            "name": "transfer_to_agent",
+                            "response": {
+                              "result": null
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "Thank you, David. I understand this is an urgent and stressful situation. Receiving a final shutoff notice for electricity is a serious risk indicator, and I'm here to start the process of assessing your situation to determine the best path forward.\n\nI am the **Risk Profiler Agent**. My immediate goal is to understand the full context of your financial and housing situation so I can accurately assess your risk level.\n\nBased on the information you provided, here is my initial assessment and the information I still require:\n\n### **Initial Information and Missing Data**\n\n| Section | Current Information | Required Information for Full Profile |\n| :--- | :--- | :--- |\n| **Client Name** | David Chen | N/A |\n| **Risk Factors** | Final electricity shutoff notice; part-time income. | Are you behind on rent, and if so, by how much? |\n| **Housing Status** | Unknown | Are you renting or do you own your home? If renting, what is the monthly rent? |\n| **Income Details** | Working part-time. | How much do you earn per month on average? Is your part-time work stable? |\n| **Dependents** | Unknown | Are there other adults or children in your household? |\n| **Stability Indicators** | None provided. | Do you have any savings, family support, or are you receiving any government benefits (like SNAP or unemployment)? |\n\n**To complete your risk profile and move toward finding resources, please provide answers to the following questions:**\n\n1.  **What is your current housing situation?** Are you renting an apartment/house, or do you own your home?\n2.  **If you are renting, what is your monthly rent amount?**\n3.  **Are you currently behind on rent?** If so, by how many months, and what is the total amount owed?\n4.  **How many people (adults and children) live in your household?**\n5.  **Roughly, how much money do you bring home each month from your part-time work?**",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        },
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies.",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "This is an excellent opportunity for proactive planning, and Marcus's foresight is commendable.\n\nBased on his **Low** risk profile, I have designed an **Intervention Plan** focused on establishing a robust emergency safety net, ensuring he maintains his current stability even if an unexpected event occurs.\n\nThe plan is divided into three sections: Immediate Action, Long-Term Resource Mapping, and Documentation/Maintenance.\n\n### **Intervention Plan Summary for Marcus**\n\n#### **I. Immediate Action & Resource Compilation (The Safety Net)**\n\nThe plan identifies one concrete local resource found through the search, which addresses a key area of housing instability: utilities.\n\n1.  **Utility Assistance Contact:** Marcus should immediately record the details for the **Community Action Energy Assistance** program (Phone: 555-0188, Web: communityaction.org/energy). This program offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\n2.  **Personal Safety Net:** The most crucial immediate step is to **dedicate a portion of his current stable income to an \"Emergency Rent Fund\"** savings account. The goal is to build up 3-6 months' worth of rent and essential bills as a personal buffer against job loss or medical emergencies.\n\n#### **II. Long-Term Resource Mapping (Future Proofing)**\n\nSince Marcus is stable and proactive, the plan tasks him with identifying key resources before he needs them:\n\n1.  **Rental Assistance:** Research and identify at least two local programs offering **Emergency Rental Assistance** or **Eviction Prevention Funds**. Understanding the eligibility for these programs now will save critical time later.\n2.  **Food Security:** Locate the nearest **Food Bank** or **Pantry**. Knowing where to access free food resources can free up cash for rent/utilities during an emergency.\n3.  **Legal Aid:** Identify a local **Legal Aid** or **Tenant Rights** organization to ensure he has access to informed advice should any tenancy issues arise.\n\n#### **III. Documentation & Review (Maintenance)**\n\n1.  **Create an Emergency Resource Binder:** All discovered resources (utility, rental, food, legal) should be compiled into a single, accessible document (physical or digital). This document should include contact information, brief program descriptions, and eligibility criteria.\n2.  **Review:** The Emergency Binder should be reviewed every six months to ensure all contact details and program information remain current.\n\nThis plan has been successfully saved to the session artifacts for future reference.",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "general_inquiry_low_risk",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.",
+                "tools": [],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\n1. Read the client's Risk Profile from the session history.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n    user_query: The original user request / intent statement to compare against the plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            },
+                            "user_query": {
+                              "title": "User Query",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text",
+                            "user_query"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-96413089-f97a-41e7-ad97-33119fcdc89f",
+                            "args": {
+                              "agent_name": "risk_profiler"
+                            },
+                            "name": "transfer_to_agent",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-96413089-f97a-41e7-ad97-33119fcdc89f",
+                            "name": "transfer_to_agent",
+                            "response": {
+                              "result": null
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "This is a good situation for proactive planning. Based on the information provided, here is the Risk Profile for Marcus:\n\n### **Client Housing Stability Assessment**\n\n**Client Name:** Marcus\n\n**Eviction Risk Level:** **Low**\n\n---\n\n### **Risk Factors**\n\n*   **General Financial Vulnerability:** While stable now, Marcus is vulnerable to common financial shocks (e.g., job loss, unexpected medical expenses, unforeseen major car repair) that could quickly deplete savings and lead to housing instability.\n*   **Uncertain Safety Net:** The proactive request for resources indicates that a formal, established emergency safety net or resource access plan may not be fully in place yet.\n\n### **Stability Indicators**\n\n*   **Current Employment:** Provides a steady and reliable income stream.\n*   **Timely Rent Payments:** Indicates strong current financial health and responsible budget management.\n*   **Proactive Engagement:** Seeking resources *before* a crisis occurs is a very strong protective factor, demonstrating high personal agency, foresight, and a commitment to maintaining long-term stability.\n\n---\n\n### **Narrative Summary**\n\nMarcus presents as a highly stable client with a **Low** eviction risk. He is currently employed and maintaining timely rent payments, indicating strong financial health. His engagement with the system is proactive and preventative, not reactionary. He is not currently facing a housing crisis, but is prudently seeking information regarding local resources to establish a safety net in the event of potential future emergencies (e.g., job loss, unexpected illness). This proactive approach is the strongest indicator of long-term stability.\n\n---\n\nThe next step in this case is to identify and compile a list of local resources and assistance programs that Marcus can keep on file for emergencies.\n\nThe **Intervention Planner** agent is best suited to research and design this resource plan. I recommend transferring this case to the **intervention_planner** now to generate the list of resources Marcus is seeking.\n\n",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        },
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-1eb95ed8-b059-4549-ab2e-1671e8b96078",
+                            "args": {
+                              "agent_name": "intervention_planner"
+                            },
+                            "name": "transfer_to_agent",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-1eb95ed8-b059-4549-ab2e-1671e8b96078",
+                            "name": "transfer_to_agent",
+                            "response": {
+                              "result": null
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-19cce9a1-fb58-4d1f-be0e-da6403c6e9f5",
+                            "args": {
+                              "category": "Rental Assistance",
+                              "query": "emergency rental assistance housing stability"
+                            },
+                            "name": "search_resources",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-19cce9a1-fb58-4d1f-be0e-da6403c6e9f5",
+                            "name": "search_resources",
+                            "response": {
+                              "status": "success",
+                              "results": []
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-e6869f17-4ebf-422d-bd55-d416937eccd3",
+                            "args": {
+                              "category": "Utility Assistance",
+                              "query": "utility bill assistance energy water"
+                            },
+                            "name": "search_resources",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-e6869f17-4ebf-422d-bd55-d416937eccd3",
+                            "name": "search_resources",
+                            "response": {
+                              "status": "success",
+                              "results": []
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-9ffa451c-9f44-435d-a913-985172bad045",
+                            "args": {
+                              "query": "financial assistance emergency support",
+                              "category": "Any"
+                            },
+                            "name": "search_resources",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-9ffa451c-9f44-435d-a913-985172bad045",
+                            "name": "search_resources",
+                            "response": {
+                              "status": "success",
+                              "results": []
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-150d071a-be2a-4617-b72f-fd3dfc6931f7",
+                            "args": {
+                              "query": "help",
+                              "category": "Any"
+                            },
+                            "name": "search_resources",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-150d071a-be2a-4617-b72f-fd3dfc6931f7",
+                            "name": "search_resources",
+                            "response": {
+                              "status": "success",
+                              "results": [
+                                {
+                                  "resource_name": "Community Action Energy Assistance",
+                                  "category": "Utility Assistance",
+                                  "contact_info": "Phone: 555-0188, Web: communityaction.org/energy",
+                                  "description": "Offers one-time emergency grants to help low-income households clear outstanding electric or water balances to prevent utility shutoffs."
+                                }
+                              ]
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-b2e72453-741a-44c1-bd16-9ea900d16da0",
+                            "args": {
+                              "user_query": "Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies.",
+                              "plan_text": "---\nIntervention Plan for Marcus\nEviction Risk Level: Low (Proactive Planning)\nGoal: Establish a proactive emergency resource safety net to maintain housing stability in the event of future financial shocks.\n---\n\n**I. Immediate Action & Resource Compilation (The Safety Net)**\n\n1.  **Immediate Resource Identification (Utility):**\n    *   **Action:** Immediately record the details for the Community Action Energy Assistance program, which was identified as a concrete local resource.\n    *   **Details:** Offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\n    *   **Contact:** Phone: 555-0188, Web: communityaction.org/energy\n    *   **Purpose:** This program addresses a critical and common threat to housing stability (utility disconnection).\n\n2.  **Financial Stability Check-up (Personal Safety Net):**\n    *   **Action:** Dedicatedly save a portion of current stable income into an \"Emergency Rent Fund\" savings account.\n    *   **Goal:** Build up savings equivalent to 3-6 months of rent and essential bills to create a personal, immediate buffer against job loss or unexpected large expenses.\n\n**II. Long-Term Resource Mapping (Future Proofing)**\n\n3.  **Rental Assistance Research (Critical Resource):**\n    *   **Action:** Proactively research and identify at least two local resources specifically offering **Emergency Rental Assistance** or **Eviction Prevention Funds**.\n    *   **Note:** These programs often have specific, time-sensitive eligibility requirements that are easier to understand before a crisis hits.\n\n4.  **Food Security Mapping (Basic Needs):**\n    *   **Action:** Locate and record the contact information, operating hours, and eligibility requirements for the nearest local **Food Bank** or **Pantry**.\n    *   **Purpose:** Access to free food resources can allow Marcus to reallocate cash towards rent/utilities during an emergency.\n\n5.  **Legal Aid and Tenant Rights:**\n    *   **Action:** Identify a local **Legal Aid** or **Tenant Rights** organization.\n    *   **Purpose:** Having their contact information ready ensures Marcus can seek immediate, informed advice should any tenancy issues arise (e.g., questions about lease termination or non-renewal).\n\n**III. Documentation & Review (Maintenance)**\n\n6.  **Create an Emergency Resource Binder:**\n    *   **Action:** Compile all discovered resources (including the Community Action Energy Assistance program and all resources from Steps 3, 4, and 5) into a single, easily accessible physical or digital document.\n    *   **Content:** The document should include contact names, phone numbers, websites, brief program descriptions, eligibility criteria, and required documentation.\n    *   **Review:** Review this Emergency Binder every six months to ensure all contact details and program information are still accurate and current.",
+                              "client_name": "Marcus"
+                            },
+                            "name": "save_intervention_plan",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-b2e72453-741a-44c1-bd16-9ea900d16da0",
+                            "name": "save_intervention_plan",
+                            "response": {
+                              "status": "success",
+                              "message": "Successfully saved intervention plan for Marcus to local artifacts folder (fallback).",
+                              "filename": "intervention_marcus.txt",
+                              "version": 0
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "intervention_planner",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "This is an excellent opportunity for proactive planning, and Marcus's foresight is commendable.\n\nBased on his **Low** risk profile, I have designed an **Intervention Plan** focused on establishing a robust emergency safety net, ensuring he maintains his current stability even if an unexpected event occurs.\n\nThe plan is divided into three sections: Immediate Action, Long-Term Resource Mapping, and Documentation/Maintenance.\n\n### **Intervention Plan Summary for Marcus**\n\n#### **I. Immediate Action & Resource Compilation (The Safety Net)**\n\nThe plan identifies one concrete local resource found through the search, which addresses a key area of housing instability: utilities.\n\n1.  **Utility Assistance Contact:** Marcus should immediately record the details for the **Community Action Energy Assistance** program (Phone: 555-0188, Web: communityaction.org/energy). This program offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\n2.  **Personal Safety Net:** The most crucial immediate step is to **dedicate a portion of his current stable income to an \"Emergency Rent Fund\"** savings account. The goal is to build up 3-6 months' worth of rent and essential bills as a personal buffer against job loss or medical emergencies.\n\n#### **II. Long-Term Resource Mapping (Future Proofing)**\n\nSince Marcus is stable and proactive, the plan tasks him with identifying key resources before he needs them:\n\n1.  **Rental Assistance:** Research and identify at least two local programs offering **Emergency Rental Assistance** or **Eviction Prevention Funds**. Understanding the eligibility for these programs now will save critical time later.\n2.  **Food Security:** Locate the nearest **Food Bank** or **Pantry**. Knowing where to access free food resources can free up cash for rent/utilities during an emergency.\n3.  **Legal Aid:** Identify a local **Legal Aid** or **Tenant Rights** organization to ensure he has access to informed advice should any tenancy issues arise.\n\n#### **III. Documentation & Review (Maintenance)**\n\n1.  **Create an Emergency Resource Binder:** All discovered resources (utility, rental, food, legal) should be compiled into a single, accessible document (physical or digital). This document should include contact information, brief program descriptions, and eligibility criteria.\n2.  **Review:** The Emergency Binder should be reviewed every six months to ensure all contact details and program information remain current.\n\nThis plan has been successfully saved to the session artifacts for future reference.",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        }
+      ],
+      "eval_dataset_df": null,
+      "candidate_name": null
+    }
+  ],
+  "metadata": {
+    "candidate_names": [
+      "candidate_1"
+    ],
+    "dataset_name": null,
+    "dataset_id": null,
+    "creation_timestamp": "2026-06-22T17:27:48.839440Z",
+    "dataset": [
+      {
+        "prompt_display_text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "This is a serious situation, Sarah. I will conduct a preliminary assessment of your housing stability risk based on the information you've provided.\n\n### **Risk Profiler Assessment**\n\n| Section | Detail |\n| :--- | :--- |\n| **Client Name** | Sarah Jenkins |\n| **Eviction Risk Level** | **High** |\n| **Date of Assessment** | [Current Date] |\n\n---\n\n### **Risk Factors**\n\nThe client is facing multiple, intersecting financial and housing stability threats, placing her at an immediate and high risk of eviction.\n\n*   **Immediate Financial Crisis (High Severity):** The client is two months behind on rent, which is the direct cause of the current eviction threat.\n*   **Loss of Income (High Severity):** The client lost her job last month, eliminating her primary source of income necessary to pay rent and other bills.\n*   **Significant Debt (High Severity):** The client has incurred a \"huge hospital bill,\" which introduces massive financial strain and potential for long-term debt, diverting any available funds away from rent and necessities.\n*   **Imminent Housing Threat (Highest Severity):** The landlord is actively threatening eviction, indicating the situation has moved past a warning phase into legal risk.\n\n### **Stability Indicators**\n\n*   **Employment Status:** Currently unemployed (Negative indicator).\n*   **Support System:** No family or social support systems were mentioned (Indication of potential isolation/lack of safety net).\n*   **Financial Reserves:** Being two months behind on rent and facing a hospital bill suggests minimal or exhausted savings (Negative indicator).\n\n---\n\n### **Narrative Summary**\n\nSarah Jenkins is experiencing an acute housing crisis driven by a rapid escalation of financial shocks. The loss of her job last month eliminated her income, quickly leading to two months of rent arrears. Simultaneously, she is burdened with a significant hospital bill, which complicates any potential recovery efforts by introducing large, unexpected debt. The convergence of zero income, mounting debt, and existing rent arrears has prompted her landlord to issue an eviction threat. Given the severity of the financial distress, the lack of an immediate income source, and the active threat of eviction, Ms. Jenkins's housing stability risk is assessed as **High**. Immediate intervention focused on rent assistance, legal aid for the eviction threat, and income support is critically necessary to prevent homelessness.",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"This is a serious situation, Sarah. I will conduct a preliminary assessment of your housing stability risk based on the information you've provided.\\n\\n### **Risk Profiler Assessment**\\n\\n| Section | Detail |\\n| :--- | :--- |\\n| **Client Name** | Sarah Jenkins |\\n| **Eviction Risk Level** | **High** |\\n| **Date of Assessment** | [Current Date] |\\n\\n---\\n\\n### **Risk Factors**\\n\\nThe client is facing multiple, intersecting financial and housing stability threats, placing her at an immediate and high risk of eviction.\\n\\n*   **Immediate Financial Crisis (High Severity):** The client is two months behind on rent, which is the direct cause of the current eviction threat.\\n*   **Loss of Income (High Severity):** The client lost her job last month, eliminating her primary source of income necessary to pay rent and other bills.\\n*   **Significant Debt (High Severity):** The client has incurred a \\\"huge hospital bill,\\\" which introduces massive financial strain and potential for long-term debt, diverting any available funds away from rent and necessities.\\n*   **Imminent Housing Threat (Highest Severity):** The landlord is actively threatening eviction, indicating the situation has moved past a warning phase into legal risk.\\n\\n### **Stability Indicators**\\n\\n*   **Employment Status:** Currently unemployed (Negative indicator).\\n*   **Support System:** No family or social support systems were mentioned (Indication of potential isolation/lack of safety net).\\n*   **Financial Reserves:** Being two months behind on rent and facing a hospital bill suggests minimal or exhausted savings (Negative indicator).\\n\\n---\\n\\n### **Narrative Summary**\\n\\nSarah Jenkins is experiencing an acute housing crisis driven by a rapid escalation of financial shocks. The loss of her job last month eliminated her income, quickly leading to two months of rent arrears. Simultaneously, she is burdened with a significant hospital bill, which complicates any potential recovery efforts by introducing large, unexpected debt. The convergence of zero income, mounting debt, and existing rent arrears has prompted her landlord to issue an eviction threat. Given the severity of the financial distress, the lack of an immediate income source, and the active threat of eviction, Ms. Jenkins's housing stability risk is assessed as **High**. Immediate intervention focused on rent assistance, legal aid for the eviction threat, and income support is critically necessary to prevent homelessness.\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.\", \"tools\": [], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\\n1. Read the client's Risk Profile from the session history.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n    user_query: The original user request / intent statement to compare against the plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}, \"user_query\": {\"title\": \"User Query\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\", \"user_query\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-2389a162-4c52-44a4-ba35-3731b28d2c80\", \"args\": {\"agent_name\": \"risk_profiler\"}, \"name\": \"transfer_to_agent\"}}], \"role\": \"model\"}}, {\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-2389a162-4c52-44a4-ba35-3731b28d2c80\", \"name\": \"transfer_to_agent\", \"response\": {\"result\": null}}}], \"role\": \"user\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"text\": \"This is a serious situation, Sarah. I will conduct a preliminary assessment of your housing stability risk based on the information you've provided.\\n\\n### **Risk Profiler Assessment**\\n\\n| Section | Detail |\\n| :--- | :--- |\\n| **Client Name** | Sarah Jenkins |\\n| **Eviction Risk Level** | **High** |\\n| **Date of Assessment** | [Current Date] |\\n\\n---\\n\\n### **Risk Factors**\\n\\nThe client is facing multiple, intersecting financial and housing stability threats, placing her at an immediate and high risk of eviction.\\n\\n*   **Immediate Financial Crisis (High Severity):** The client is two months behind on rent, which is the direct cause of the current eviction threat.\\n*   **Loss of Income (High Severity):** The client lost her job last month, eliminating her primary source of income necessary to pay rent and other bills.\\n*   **Significant Debt (High Severity):** The client has incurred a \\\"huge hospital bill,\\\" which introduces massive financial strain and potential for long-term debt, diverting any available funds away from rent and necessities.\\n*   **Imminent Housing Threat (Highest Severity):** The landlord is actively threatening eviction, indicating the situation has moved past a warning phase into legal risk.\\n\\n### **Stability Indicators**\\n\\n*   **Employment Status:** Currently unemployed (Negative indicator).\\n*   **Support System:** No family or social support systems were mentioned (Indication of potential isolation/lack of safety net).\\n*   **Financial Reserves:** Being two months behind on rent and facing a hospital bill suggests minimal or exhausted savings (Negative indicator).\\n\\n---\\n\\n### **Narrative Summary**\\n\\nSarah Jenkins is experiencing an acute housing crisis driven by a rapid escalation of financial shocks. The loss of her job last month eliminated her income, quickly leading to two months of rent arrears. Simultaneously, she is burdened with a significant hospital bill, which complicates any potential recovery efforts by introducing large, unexpected debt. The convergence of zero income, mounting debt, and existing rent arrears has prompted her landlord to issue an eviction threat. Given the severity of the financial distress, the lack of an immediate income source, and the active threat of eviction, Ms. Jenkins's housing stability risk is assessed as **High**. Immediate intervention focused on rent assistance, legal aid for the eviction threat, and income support is critically necessary to prevent homelessness.\"}], \"role\": \"model\"}}]}]}"
+      },
+      {
+        "prompt_display_text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "Thank you, David. I understand this is an urgent and stressful situation. Receiving a final shutoff notice for electricity is a serious risk indicator, and I'm here to start the process of assessing your situation to determine the best path forward.\n\nI am the **Risk Profiler Agent**. My immediate goal is to understand the full context of your financial and housing situation so I can accurately assess your risk level.\n\nBased on the information you provided, here is my initial assessment and the information I still require:\n\n### **Initial Information and Missing Data**\n\n| Section | Current Information | Required Information for Full Profile |\n| :--- | :--- | :--- |\n| **Client Name** | David Chen | N/A |\n| **Risk Factors** | Final electricity shutoff notice; part-time income. | Are you behind on rent, and if so, by how much? |\n| **Housing Status** | Unknown | Are you renting or do you own your home? If renting, what is the monthly rent? |\n| **Income Details** | Working part-time. | How much do you earn per month on average? Is your part-time work stable? |\n| **Dependents** | Unknown | Are there other adults or children in your household? |\n| **Stability Indicators** | None provided. | Do you have any savings, family support, or are you receiving any government benefits (like SNAP or unemployment)? |\n\n**To complete your risk profile and move toward finding resources, please provide answers to the following questions:**\n\n1.  **What is your current housing situation?** Are you renting an apartment/house, or do you own your home?\n2.  **If you are renting, what is your monthly rent amount?**\n3.  **Are you currently behind on rent?** If so, by how many months, and what is the total amount owed?\n4.  **How many people (adults and children) live in your household?**\n5.  **Roughly, how much money do you bring home each month from your part-time work?**",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Thank you, David. I understand this is an urgent and stressful situation. Receiving a final shutoff notice for electricity is a serious risk indicator, and I'm here to start the process of assessing your situation to determine the best path forward.\\n\\nI am the **Risk Profiler Agent**. My immediate goal is to understand the full context of your financial and housing situation so I can accurately assess your risk level.\\n\\nBased on the information you provided, here is my initial assessment and the information I still require:\\n\\n### **Initial Information and Missing Data**\\n\\n| Section | Current Information | Required Information for Full Profile |\\n| :--- | :--- | :--- |\\n| **Client Name** | David Chen | N/A |\\n| **Risk Factors** | Final electricity shutoff notice; part-time income. | Are you behind on rent, and if so, by how much? |\\n| **Housing Status** | Unknown | Are you renting or do you own your home? If renting, what is the monthly rent? |\\n| **Income Details** | Working part-time. | How much do you earn per month on average? Is your part-time work stable? |\\n| **Dependents** | Unknown | Are there other adults or children in your household? |\\n| **Stability Indicators** | None provided. | Do you have any savings, family support, or are you receiving any government benefits (like SNAP or unemployment)? |\\n\\n**To complete your risk profile and move toward finding resources, please provide answers to the following questions:**\\n\\n1.  **What is your current housing situation?** Are you renting an apartment/house, or do you own your home?\\n2.  **If you are renting, what is your monthly rent amount?**\\n3.  **Are you currently behind on rent?** If so, by how many months, and what is the total amount owed?\\n4.  **How many people (adults and children) live in your household?**\\n5.  **Roughly, how much money do you bring home each month from your part-time work?**\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.\", \"tools\": [], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\\n1. Read the client's Risk Profile from the session history.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n    user_query: The original user request / intent statement to compare against the plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}, \"user_query\": {\"title\": \"User Query\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\", \"user_query\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-8d319be2-7566-4076-acde-8e4e079fe49a\", \"args\": {\"agent_name\": \"risk_profiler\"}, \"name\": \"transfer_to_agent\"}}], \"role\": \"model\"}}, {\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-8d319be2-7566-4076-acde-8e4e079fe49a\", \"name\": \"transfer_to_agent\", \"response\": {\"result\": null}}}], \"role\": \"user\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"text\": \"Thank you, David. I understand this is an urgent and stressful situation. Receiving a final shutoff notice for electricity is a serious risk indicator, and I'm here to start the process of assessing your situation to determine the best path forward.\\n\\nI am the **Risk Profiler Agent**. My immediate goal is to understand the full context of your financial and housing situation so I can accurately assess your risk level.\\n\\nBased on the information you provided, here is my initial assessment and the information I still require:\\n\\n### **Initial Information and Missing Data**\\n\\n| Section | Current Information | Required Information for Full Profile |\\n| :--- | :--- | :--- |\\n| **Client Name** | David Chen | N/A |\\n| **Risk Factors** | Final electricity shutoff notice; part-time income. | Are you behind on rent, and if so, by how much? |\\n| **Housing Status** | Unknown | Are you renting or do you own your home? If renting, what is the monthly rent? |\\n| **Income Details** | Working part-time. | How much do you earn per month on average? Is your part-time work stable? |\\n| **Dependents** | Unknown | Are there other adults or children in your household? |\\n| **Stability Indicators** | None provided. | Do you have any savings, family support, or are you receiving any government benefits (like SNAP or unemployment)? |\\n\\n**To complete your risk profile and move toward finding resources, please provide answers to the following questions:**\\n\\n1.  **What is your current housing situation?** Are you renting an apartment/house, or do you own your home?\\n2.  **If you are renting, what is your monthly rent amount?**\\n3.  **Are you currently behind on rent?** If so, by how many months, and what is the total amount owed?\\n4.  **How many people (adults and children) live in your household?**\\n5.  **Roughly, how much money do you bring home each month from your part-time work?**\"}], \"role\": \"model\"}}]}]}"
+      },
+      {
+        "prompt_display_text": "Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies.",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies.\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "This is an excellent opportunity for proactive planning, and Marcus's foresight is commendable.\n\nBased on his **Low** risk profile, I have designed an **Intervention Plan** focused on establishing a robust emergency safety net, ensuring he maintains his current stability even if an unexpected event occurs.\n\nThe plan is divided into three sections: Immediate Action, Long-Term Resource Mapping, and Documentation/Maintenance.\n\n### **Intervention Plan Summary for Marcus**\n\n#### **I. Immediate Action & Resource Compilation (The Safety Net)**\n\nThe plan identifies one concrete local resource found through the search, which addresses a key area of housing instability: utilities.\n\n1.  **Utility Assistance Contact:** Marcus should immediately record the details for the **Community Action Energy Assistance** program (Phone: 555-0188, Web: communityaction.org/energy). This program offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\n2.  **Personal Safety Net:** The most crucial immediate step is to **dedicate a portion of his current stable income to an \"Emergency Rent Fund\"** savings account. The goal is to build up 3-6 months' worth of rent and essential bills as a personal buffer against job loss or medical emergencies.\n\n#### **II. Long-Term Resource Mapping (Future Proofing)**\n\nSince Marcus is stable and proactive, the plan tasks him with identifying key resources before he needs them:\n\n1.  **Rental Assistance:** Research and identify at least two local programs offering **Emergency Rental Assistance** or **Eviction Prevention Funds**. Understanding the eligibility for these programs now will save critical time later.\n2.  **Food Security:** Locate the nearest **Food Bank** or **Pantry**. Knowing where to access free food resources can free up cash for rent/utilities during an emergency.\n3.  **Legal Aid:** Identify a local **Legal Aid** or **Tenant Rights** organization to ensure he has access to informed advice should any tenancy issues arise.\n\n#### **III. Documentation & Review (Maintenance)**\n\n1.  **Create an Emergency Resource Binder:** All discovered resources (utility, rental, food, legal) should be compiled into a single, accessible document (physical or digital). This document should include contact information, brief program descriptions, and eligibility criteria.\n2.  **Review:** The Emergency Binder should be reviewed every six months to ensure all contact details and program information remain current.\n\nThis plan has been successfully saved to the session artifacts for future reference.",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"This is an excellent opportunity for proactive planning, and Marcus's foresight is commendable.\\n\\nBased on his **Low** risk profile, I have designed an **Intervention Plan** focused on establishing a robust emergency safety net, ensuring he maintains his current stability even if an unexpected event occurs.\\n\\nThe plan is divided into three sections: Immediate Action, Long-Term Resource Mapping, and Documentation/Maintenance.\\n\\n### **Intervention Plan Summary for Marcus**\\n\\n#### **I. Immediate Action & Resource Compilation (The Safety Net)**\\n\\nThe plan identifies one concrete local resource found through the search, which addresses a key area of housing instability: utilities.\\n\\n1.  **Utility Assistance Contact:** Marcus should immediately record the details for the **Community Action Energy Assistance** program (Phone: 555-0188, Web: communityaction.org/energy). This program offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\\n2.  **Personal Safety Net:** The most crucial immediate step is to **dedicate a portion of his current stable income to an \\\"Emergency Rent Fund\\\"** savings account. The goal is to build up 3-6 months' worth of rent and essential bills as a personal buffer against job loss or medical emergencies.\\n\\n#### **II. Long-Term Resource Mapping (Future Proofing)**\\n\\nSince Marcus is stable and proactive, the plan tasks him with identifying key resources before he needs them:\\n\\n1.  **Rental Assistance:** Research and identify at least two local programs offering **Emergency Rental Assistance** or **Eviction Prevention Funds**. Understanding the eligibility for these programs now will save critical time later.\\n2.  **Food Security:** Locate the nearest **Food Bank** or **Pantry**. Knowing where to access free food resources can free up cash for rent/utilities during an emergency.\\n3.  **Legal Aid:** Identify a local **Legal Aid** or **Tenant Rights** organization to ensure he has access to informed advice should any tenancy issues arise.\\n\\n#### **III. Documentation & Review (Maintenance)**\\n\\n1.  **Create an Emergency Resource Binder:** All discovered resources (utility, rental, food, legal) should be compiled into a single, accessible document (physical or digital). This document should include contact information, brief program descriptions, and eligibility criteria.\\n2.  **Review:** The Emergency Binder should be reviewed every six months to ensure all contact details and program information remain current.\\n\\nThis plan has been successfully saved to the session artifacts for future reference.\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, transfer control to the `risk_profiler` sub-agent to compile the risk profile.\\n2. Once the `risk_profiler` has completed the risk profile, transfer control to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it via the save_intervention_plan tool.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, identifies risk factors and protective factors, and determines the eviction risk level.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level (Low, Medium, or High) based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nPresent your final assessment clearly with sections: Client Name, Eviction Risk Level, Risk Factors, Stability Indicators, and Narrative Summary.\", \"tools\": [], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded Intervention Plan.\\n1. Read the client's Risk Profile from the session history.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. You MUST call the save_intervention_plan tool to save the complete text representation of the intervention plan to the session artifacts. You must pass the client name, the plan text, and the user's original query as the user_query argument. This will trigger a Vibe Diff security confirmation check.\\nOnce you have built the plan and successfully saved it, summarize the plan details for the user.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nBefore execution, this tool triggers a 'Vibe Diff' security check that requires human confirmation.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n    user_query: The original user request / intent statement to compare against the plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}, \"user_query\": {\"title\": \"User Query\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\", \"user_query\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-96413089-f97a-41e7-ad97-33119fcdc89f\", \"args\": {\"agent_name\": \"risk_profiler\"}, \"name\": \"transfer_to_agent\"}}], \"role\": \"model\"}}, {\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-96413089-f97a-41e7-ad97-33119fcdc89f\", \"name\": \"transfer_to_agent\", \"response\": {\"result\": null}}}], \"role\": \"user\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"text\": \"This is a good situation for proactive planning. Based on the information provided, here is the Risk Profile for Marcus:\\n\\n### **Client Housing Stability Assessment**\\n\\n**Client Name:** Marcus\\n\\n**Eviction Risk Level:** **Low**\\n\\n---\\n\\n### **Risk Factors**\\n\\n*   **General Financial Vulnerability:** While stable now, Marcus is vulnerable to common financial shocks (e.g., job loss, unexpected medical expenses, unforeseen major car repair) that could quickly deplete savings and lead to housing instability.\\n*   **Uncertain Safety Net:** The proactive request for resources indicates that a formal, established emergency safety net or resource access plan may not be fully in place yet.\\n\\n### **Stability Indicators**\\n\\n*   **Current Employment:** Provides a steady and reliable income stream.\\n*   **Timely Rent Payments:** Indicates strong current financial health and responsible budget management.\\n*   **Proactive Engagement:** Seeking resources *before* a crisis occurs is a very strong protective factor, demonstrating high personal agency, foresight, and a commitment to maintaining long-term stability.\\n\\n---\\n\\n### **Narrative Summary**\\n\\nMarcus presents as a highly stable client with a **Low** eviction risk. He is currently employed and maintaining timely rent payments, indicating strong financial health. His engagement with the system is proactive and preventative, not reactionary. He is not currently facing a housing crisis, but is prudently seeking information regarding local resources to establish a safety net in the event of potential future emergencies (e.g., job loss, unexpected illness). This proactive approach is the strongest indicator of long-term stability.\\n\\n---\\n\\nThe next step in this case is to identify and compile a list of local resources and assistance programs that Marcus can keep on file for emergencies.\\n\\nThe **Intervention Planner** agent is best suited to research and design this resource plan. I recommend transferring this case to the **intervention_planner** now to generate the list of resources Marcus is seeking.\\n\\n\"}, {\"function_call\": {\"id\": \"adk-1eb95ed8-b059-4549-ab2e-1671e8b96078\", \"args\": {\"agent_name\": \"intervention_planner\"}, \"name\": \"transfer_to_agent\"}}], \"role\": \"model\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-1eb95ed8-b059-4549-ab2e-1671e8b96078\", \"name\": \"transfer_to_agent\", \"response\": {\"result\": null}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-19cce9a1-fb58-4d1f-be0e-da6403c6e9f5\", \"args\": {\"category\": \"Rental Assistance\", \"query\": \"emergency rental assistance housing stability\"}, \"name\": \"search_resources\"}}], \"role\": \"model\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-19cce9a1-fb58-4d1f-be0e-da6403c6e9f5\", \"name\": \"search_resources\", \"response\": {\"status\": \"success\", \"results\": []}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-e6869f17-4ebf-422d-bd55-d416937eccd3\", \"args\": {\"category\": \"Utility Assistance\", \"query\": \"utility bill assistance energy water\"}, \"name\": \"search_resources\"}}], \"role\": \"model\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-e6869f17-4ebf-422d-bd55-d416937eccd3\", \"name\": \"search_resources\", \"response\": {\"status\": \"success\", \"results\": []}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-9ffa451c-9f44-435d-a913-985172bad045\", \"args\": {\"query\": \"financial assistance emergency support\", \"category\": \"Any\"}, \"name\": \"search_resources\"}}], \"role\": \"model\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-9ffa451c-9f44-435d-a913-985172bad045\", \"name\": \"search_resources\", \"response\": {\"status\": \"success\", \"results\": []}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-150d071a-be2a-4617-b72f-fd3dfc6931f7\", \"args\": {\"query\": \"help\", \"category\": \"Any\"}, \"name\": \"search_resources\"}}], \"role\": \"model\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-150d071a-be2a-4617-b72f-fd3dfc6931f7\", \"name\": \"search_resources\", \"response\": {\"status\": \"success\", \"results\": [{\"resource_name\": \"Community Action Energy Assistance\", \"category\": \"Utility Assistance\", \"contact_info\": \"Phone: 555-0188, Web: communityaction.org/energy\", \"description\": \"Offers one-time emergency grants to help low-income households clear outstanding electric or water balances to prevent utility shutoffs.\"}]}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-b2e72453-741a-44c1-bd16-9ea900d16da0\", \"args\": {\"user_query\": \"Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies.\", \"plan_text\": \"---\\nIntervention Plan for Marcus\\nEviction Risk Level: Low (Proactive Planning)\\nGoal: Establish a proactive emergency resource safety net to maintain housing stability in the event of future financial shocks.\\n---\\n\\n**I. Immediate Action & Resource Compilation (The Safety Net)**\\n\\n1.  **Immediate Resource Identification (Utility):**\\n    *   **Action:** Immediately record the details for the Community Action Energy Assistance program, which was identified as a concrete local resource.\\n    *   **Details:** Offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\\n    *   **Contact:** Phone: 555-0188, Web: communityaction.org/energy\\n    *   **Purpose:** This program addresses a critical and common threat to housing stability (utility disconnection).\\n\\n2.  **Financial Stability Check-up (Personal Safety Net):**\\n    *   **Action:** Dedicatedly save a portion of current stable income into an \\\"Emergency Rent Fund\\\" savings account.\\n    *   **Goal:** Build up savings equivalent to 3-6 months of rent and essential bills to create a personal, immediate buffer against job loss or unexpected large expenses.\\n\\n**II. Long-Term Resource Mapping (Future Proofing)**\\n\\n3.  **Rental Assistance Research (Critical Resource):**\\n    *   **Action:** Proactively research and identify at least two local resources specifically offering **Emergency Rental Assistance** or **Eviction Prevention Funds**.\\n    *   **Note:** These programs often have specific, time-sensitive eligibility requirements that are easier to understand before a crisis hits.\\n\\n4.  **Food Security Mapping (Basic Needs):**\\n    *   **Action:** Locate and record the contact information, operating hours, and eligibility requirements for the nearest local **Food Bank** or **Pantry**.\\n    *   **Purpose:** Access to free food resources can allow Marcus to reallocate cash towards rent/utilities during an emergency.\\n\\n5.  **Legal Aid and Tenant Rights:**\\n    *   **Action:** Identify a local **Legal Aid** or **Tenant Rights** organization.\\n    *   **Purpose:** Having their contact information ready ensures Marcus can seek immediate, informed advice should any tenancy issues arise (e.g., questions about lease termination or non-renewal).\\n\\n**III. Documentation & Review (Maintenance)**\\n\\n6.  **Create an Emergency Resource Binder:**\\n    *   **Action:** Compile all discovered resources (including the Community Action Energy Assistance program and all resources from Steps 3, 4, and 5) into a single, easily accessible physical or digital document.\\n    *   **Content:** The document should include contact names, phone numbers, websites, brief program descriptions, eligibility criteria, and required documentation.\\n    *   **Review:** Review this Emergency Binder every six months to ensure all contact details and program information are still accurate and current.\", \"client_name\": \"Marcus\"}, \"name\": \"save_intervention_plan\"}}], \"role\": \"model\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-b2e72453-741a-44c1-bd16-9ea900d16da0\", \"name\": \"save_intervention_plan\", \"response\": {\"status\": \"success\", \"message\": \"Successfully saved intervention plan for Marcus to local artifacts folder (fallback).\", \"filename\": \"intervention_marcus.txt\", \"version\": 0}}}], \"role\": \"user\"}}, {\"author\": \"intervention_planner\", \"content\": {\"parts\": [{\"text\": \"This is an excellent opportunity for proactive planning, and Marcus's foresight is commendable.\\n\\nBased on his **Low** risk profile, I have designed an **Intervention Plan** focused on establishing a robust emergency safety net, ensuring he maintains his current stability even if an unexpected event occurs.\\n\\nThe plan is divided into three sections: Immediate Action, Long-Term Resource Mapping, and Documentation/Maintenance.\\n\\n### **Intervention Plan Summary for Marcus**\\n\\n#### **I. Immediate Action & Resource Compilation (The Safety Net)**\\n\\nThe plan identifies one concrete local resource found through the search, which addresses a key area of housing instability: utilities.\\n\\n1.  **Utility Assistance Contact:** Marcus should immediately record the details for the **Community Action Energy Assistance** program (Phone: 555-0188, Web: communityaction.org/energy). This program offers one-time emergency grants for outstanding electric or water balances to prevent utility shutoffs.\\n2.  **Personal Safety Net:** The most crucial immediate step is to **dedicate a portion of his current stable income to an \\\"Emergency Rent Fund\\\"** savings account. The goal is to build up 3-6 months' worth of rent and essential bills as a personal buffer against job loss or medical emergencies.\\n\\n#### **II. Long-Term Resource Mapping (Future Proofing)**\\n\\nSince Marcus is stable and proactive, the plan tasks him with identifying key resources before he needs them:\\n\\n1.  **Rental Assistance:** Research and identify at least two local programs offering **Emergency Rental Assistance** or **Eviction Prevention Funds**. Understanding the eligibility for these programs now will save critical time later.\\n2.  **Food Security:** Locate the nearest **Food Bank** or **Pantry**. Knowing where to access free food resources can free up cash for rent/utilities during an emergency.\\n3.  **Legal Aid:** Identify a local **Legal Aid** or **Tenant Rights** organization to ensure he has access to informed advice should any tenancy issues arise.\\n\\n#### **III. Documentation & Review (Maintenance)**\\n\\n1.  **Create an Emergency Resource Binder:** All discovered resources (utility, rental, food, legal) should be compiled into a single, accessible document (physical or digital). This document should include contact information, brief program descriptions, and eligibility criteria.\\n2.  **Review:** The Emergency Binder should be reviewed every six months to ensure all contact details and program information remain current.\\n\\nThis plan has been successfully saved to the session artifacts for future reference.\"}], \"role\": \"model\"}}]}]}"
+      }
+    ]
+  },
+  "agent_info": null
+}

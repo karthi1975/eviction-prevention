@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preventable Pathways | Eviction Prevention Dashboard</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/static/app.css?v=1.5">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar: Sessions and Client Records -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fa-solid fa-shield-halved logo-icon"></i>
+          <div>
+            <h1>Preventable Pathways</h1>
+            <span class="logo-sub">Eviction Prevention Suite</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="sidebar-content">
+        <button id="new-session-btn" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-plus"></i> New Client Assessment
+        </button>
+        
+        <div class="session-list-section">
+          <h3>Active Cases</h3>
+          <ul id="session-list" class="session-list">
+            <!-- Sessions will be loaded here dynamically -->
+          </ul>
+        </div>
+      </div>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">SW</div>
+          <div class="profile-info">
+            <span class="profile-name">Social Worker Portal</span>
+            <span class="profile-role">Case Manager</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace: Chat Interface -->
+    <main class="chat-workspace">
+      <header class="workspace-header">
+        <div class="header-client-info">
+          <h2 id="active-client-title">Assessment Assistant</h2>
+          <span id="active-session-status" class="status-indicator">Ready for Input</span>
+        </div>
+        <div class="header-actions">
+          <button id="clear-chat-btn" class="btn btn-icon" title="Clear Chat History">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      </header>
+
+      <div id="chat-messages" class="chat-messages">
+        <!-- System Welcome Message -->
+        <div class="message system">
+          <div class="message-avatar">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="message-content">
+            <p>Welcome to <strong>Preventable Pathways</strong>. I am the Eviction Prevention Coordinator Agent. I can help you compile housing stability risk profiles and design local-resource-grounded action plans.</p>
+            <p>To begin, please introduce your client and their situation (e.g., <em>"I need to assess John Doe, who lost his job last month and is two months behind on rent."</em>).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Human-in-the-loop Card Container -->
+      <div id="hitl-container" class="hitl-overlay hidden">
+        <!-- Interactive Tool Confirmation Cards will render here -->
+      </div>
+
+      <footer class="workspace-footer">
+        <form id="chat-form" class="chat-form">
+          <input type="text" id="chat-input" placeholder="Type case details or agent response..." autocomplete="off" required>
+          <button type="submit" id="send-btn" class="btn btn-send" title="Send Message">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </footer>
+    </main>
+
+    <!-- Right Panel: Case Dashboard -->
+    <aside class="dashboard-panel">
+      <nav class="dashboard-nav">
+        <button id="tab-risk" class="tab-btn active" onclick="switchTab('risk')">
+          <i class="fa-solid fa-chart-line"></i> Risk Profile
+        </button>
+        <button id="tab-plan" class="tab-btn" onclick="switchTab('plan')">
+          <i class="fa-solid fa-clipboard-list"></i> Action Plan
+        </button>
+      </nav>
+
+      <div class="dashboard-content">
+        <!-- Tab 1: Risk Assessment Profile -->
+        <section id="content-risk" class="tab-content active">
+          <div class="card client-summary-card">
+            <h3>Client Summary</h3>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="item-label">Name</span>
+                <span id="dash-client-name" class="item-value">—</span>
+              </div>
+              <div class="summary-item">
+                <span class="item-label">Eviction Risk Level</span>
+                <span id="dash-risk-level" class="risk-badge badge-neutral">PENDING</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Housing Risk Factors</h3>
+            <div id="dash-risk-factors">
+              <ul class="factor-list">
+                <li class="empty-state">No risk factors identified yet. Introduce the case details to begin assessment.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Stability Indicators</h3>
+            <div id="dash-stability-indicators">
+              <ul class="factor-list success-list">
+                <li class="empty-state">No stability indicators identified yet.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card narrative-card">
+            <h3>Narrative Summary</h3>
+            <div id="dash-narrative" class="narrative-content">
+              Introduce case details in the chat. The Risk Profiler Agent will compile a detailed stability summary here.
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 2: Intervention Plan -->
+        <section id="content-plan" class="tab-content">
+          <div class="plan-header">
+            <h3>Action Plan & Resources</h3>
+            <button id="print-plan-btn" class="btn btn-secondary btn-sm" disabled>
+              <i class="fa-solid fa-print"></i> Print
+            </button>
+          </div>
+          
+          <div id="plan-loading" class="plan-loading-state hidden">
+            <div class="spinner"></div>
+            <span>Intervention Plan is being generated...</span>
+          </div>
+
+          <div id="plan-container" class="plan-empty-state">
+            <i class="fa-solid fa-file-invoice plan-empty-icon"></i>
+            <p>An Intervention Plan has not been drafted yet.</p>
+            <p class="sub-text">Once the Risk Profile is complete, the Intervention Planner Agent will search for local resources and generate an action plan.</p>
+          </div>
+          
+          <div id="plan-content-section" class="plan-content-section hidden">
+            <div class="card">
+              <h3>Action Steps</h3>
+              <div id="dash-plan-steps" class="plan-steps-list">
+                <!-- Actions steps -->
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Recommended Resources</h3>
+              <div id="dash-plan-resources" class="plan-resources-grid">
+                <!-- Resources grid -->
+              </div>
+            </div>
+
+            <div class="card raw-plan-card">
+              <h3>Complete Document</h3>
+              <pre id="dash-plan-raw" class="raw-document-text"></pre>
+            </div>
+          </div>
+          
+          <!-- Saved Artifacts Section -->
+          <div class="session-artifacts-section">
+            <h3>Saved Documents</h3>
+            <ul id="artifacts-list" class="artifacts-list">
+              <!-- Saved PDF/txt files will be listed here -->
+              <li class="empty-state">No saved plans yet.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="/static/app.js?v=1.5"></script>
+</body>
+</html>

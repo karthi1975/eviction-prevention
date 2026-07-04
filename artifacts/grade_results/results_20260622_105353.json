@@ -1,0 +1,1744 @@
+{
+  "eval_case_results": [
+    {
+      "eval_case_index": 0,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": null,
+              "explanation": null,
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": "400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Error parsing JSON. Last error: Expecting property name enclosed in double quotes: line 1 column 2 (char 1), Input: {**Score:** 3  **Explanation:** The response is acceptable in the context of the agent\\'s internal workflow. The `risk_profiler` agent is designed to assess the client\\'s situation and ask clarifying questions if key details are missing, which it does accurately here. It correctly identifies the dire nature of Sarah\\'s situation and then requests necessary information to build a comprehensive risk profile by asking about stability indicators/protective factors like income, support networks, and existing resources/applications. The questions themselves are relevant and well-structured.  However, as a \"final response\" to a user who explicitly says \"Help me\" and expresses significant distress (\"I don\\'t know what to do\"), the response lacks immediate empathetic support or an explanation of how providing this information will lead to concrete help. While it acknowledges the situation is \"dire,\" it immediately shifts to data collection without any reassurance or a brief outline of the next steps in the process, which could be alienating for a user in crisis. For an enterprise AI assistant dealing with sensitive situations, a more empathetic opening and a clearer explanation of *why* this information is being requested would significantly improve the user experience. It adequately performs its profiling function but falls short in delivering a truly helpful and supportive initial interaction for a distressed user.}', 'status': 'INVALID_ARGUMENT'}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "eval_case_index": 1,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": 5.0,
+              "explanation": "The agent's response is excellent for this stage of the interaction. The user presented a complex problem requiring more information for a proper solution. The `risk_profiler` agent correctly identified the immediate risk factors (utility shutoff, insufficient income) and a stability indicator (part-time employment). It then accurately generated a comprehensive list of clarifying questions, categorized logically (Housing Security, Financial Picture, Support and Benefits), which are essential for building a complete 'Structured Risk Assessment Profile'. The response clearly explains the purpose of these questions and what will be done once the information is gathered. This demonstrates a strong understanding of the problem and an appropriate, well-structured approach to gathering necessary data before providing an intervention plan. The tone is empathetic and professional.",
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "eval_case_index": 2,
+      "response_candidate_results": [
+        {
+          "response_index": 0,
+          "metric_results": {
+            "custom_response_quality": {
+              "metric_name": "custom_response_quality",
+              "score": 5.0,
+              "explanation": "The agent's response is excellent. It accurately assesses the user's situation as 'Low-Risk' and acknowledges their proactive approach. Crucially, it correctly identifies the missing piece of information (location) required to fulfill the user's request for specific, local programs. The response clearly explains why this information is needed, provides relevant examples of program categories it can search for, and maintains a helpful and empathetic tone. The structure is logical, guiding the user on the next necessary step without making assumptions or providing generic, unhelpful information.",
+              "rubric_verdicts": null,
+              "raw_output": null,
+              "error_message": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "summary_metrics": [
+    {
+      "metric_name": "custom_response_quality",
+      "num_cases_total": 3,
+      "num_cases_valid": 2,
+      "num_cases_error": 1,
+      "mean_score": 5.0,
+      "stdev_score": 0.0,
+      "pass_rate": null
+    }
+  ],
+  "win_rates": null,
+  "evaluation_dataset": [
+    {
+      "bigquery_source": null,
+      "gcs_source": null,
+      "eval_cases": [
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "Thank you for providing the initial information on Sarah Jenkins. The situation is dire, with multiple severe risk factors already identified.\n\nTo create the required comprehensive and accurate RiskProfile, I need to gather a few more details, specifically regarding her potential stability indicators or protective factors.\n\nCould you please provide the following information:\n\n1.  **Support Network/Income:** Does Sarah have any income (e.g., unemployment benefits, part-time work, temporary gig work) or a support network (family, friends, church) who can offer temporary financial or emotional assistance?\n2.  **Resources:** Has Sarah applied for any rental assistance programs or public benefits (like SNAP/food stamps)? Does she have any savings or assets she can draw upon?",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "sarah_jenkins_eviction",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "risk_profiler",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "intervention_planner",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "description": "Structured risk assessment profile for housing stability.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client being assessed.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "eviction_risk_level": {
+                              "description": "The determined risk level of eviction or housing loss.",
+                              "enum": [
+                                "Low",
+                                "Medium",
+                                "High"
+                              ],
+                              "title": "Eviction Risk Level",
+                              "type": "string"
+                            },
+                            "risk_factors": {
+                              "description": "List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Risk Factors",
+                              "type": "array"
+                            },
+                            "stability_indicators": {
+                              "description": "List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Stability Indicators",
+                              "type": "array"
+                            },
+                            "narrative_summary": {
+                              "description": "A detailed summary of the client's current situation and their path toward instability.",
+                              "title": "Narrative Summary",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "eviction_risk_level",
+                            "risk_factors",
+                            "stability_indicators",
+                            "narrative_summary"
+                          ],
+                          "title": "RiskProfile",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\n1. Read the client's RiskProfile from the session history or state.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "$defs": {
+                            "ResourceRecommendation": {
+                              "description": "Details of a recommended local resource or assistance program.",
+                              "properties": {
+                                "resource_name": {
+                                  "description": "The name of the program or organization.",
+                                  "title": "Resource Name",
+                                  "type": "string"
+                                },
+                                "category": {
+                                  "description": "The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).",
+                                  "title": "Category",
+                                  "type": "string"
+                                },
+                                "contact_info": {
+                                  "description": "Phone number, email, or address for the resource.",
+                                  "title": "Contact Info",
+                                  "type": "string"
+                                },
+                                "relevance": {
+                                  "description": "Explanation of how this resource addresses the client's specific risk factors.",
+                                  "title": "Relevance",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "resource_name",
+                                "category",
+                                "contact_info",
+                                "relevance"
+                              ],
+                              "title": "ResourceRecommendation",
+                              "type": "object"
+                            }
+                          },
+                          "description": "Complete personalized intervention plan to prevent eviction/housing loss.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "immediate_steps": {
+                              "description": "A chronological checklist of immediate actions the client or social worker should take.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Immediate Steps",
+                              "type": "array"
+                            },
+                            "recommended_resources": {
+                              "description": "List of specific local programs recommended to mitigate the risk factors.",
+                              "items": {
+                                "$ref": "#/$defs/ResourceRecommendation"
+                              },
+                              "title": "Recommended Resources",
+                              "type": "array"
+                            },
+                            "follow_up_timeline": {
+                              "description": "Recommendation for when and how the next follow-up check-in should occur.",
+                              "title": "Follow Up Timeline",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "immediate_steps",
+                            "recommended_resources",
+                            "follow_up_timeline"
+                          ],
+                          "title": "InterventionPlan",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-86fcf4d5-da1d-41bb-b655-62e10b5c00fa",
+                            "args": {
+                              "request": "Analyze the following client situation: The client is Sarah Jenkins. She lost her job last month, has a huge hospital bill, is two months behind on rent, and her landlord is threatening eviction. Please compile a comprehensive RiskProfile, ensuring all key risk factors (financial, legal, medical, employment) are assessed. Ask any necessary clarifying questions to complete the profile."
+                            },
+                            "name": "risk_profiler",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "Thank you for providing the initial information on Sarah Jenkins. The situation is dire, with multiple severe risk factors already identified.\n\nTo create the required comprehensive and accurate RiskProfile, I need to gather a few more details, specifically regarding her potential stability indicators or protective factors.\n\nCould you please provide the following information:\n\n1.  **Support Network/Income:** Does Sarah have any income (e.g., unemployment benefits, part-time work, temporary gig work) or a support network (family, friends, church) who can offer temporary financial or emotional assistance?\n2.  **Resources:** Has Sarah applied for any rental assistance programs or public benefits (like SNAP/food stamps)? Does she have any savings or assets she can draw upon?",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        },
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "Thank you for providing the initial information about David Chen. The imminent electricity shutoff and insufficient income from part-time work are serious immediate risk factors.\n\nTo build a comprehensive Structured Risk Assessment Profile, I need to gather a few more critical details.\n\n**Initial Assessment:**\n\n*   **Client:** David Chen\n*   **Known Risk Factors:** Utility shutoff (imminent loss of essential service), Insufficient income (underemployment).\n*   **Known Stability Indicators:** Employed (part-time work).\n\n**Clarifying Questions:**\n\n1.  **Housing Security:**\n    *   Does Mr. Chen rent or own his residence?\n    *   If he rents, is he current on his monthly rent payments? If not, how many months behind is he?\n    *   What is the total amount of his monthly housing payment (rent/mortgage)?\n2.  **Financial Picture:**\n    *   What is the specific amount of the overdue electricity bill that is leading to the shutoff notice?\n    *   What is his approximate total monthly income from his part-time job?\n    *   Does he have any significant debts outside of his utility bill (e.g., medical debt, credit card debt, car payments)?\n3.  **Support and Benefits:**\n    *   Does Mr. Chen live alone, or does he have dependents (children, elderly relatives) living with him?\n    *   Is he currently receiving any government assistance (e.g., SNAP/Food Stamps, Medicaid, Unemployment, or Disability benefits)?\n    *   Does he have family or friends who might be able to offer financial or logistical support?\n\nOnce I have answers to these questions, I can accurately determine his eviction risk level, complete the lists of risk and stability factors, and write the detailed narrative summary.",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "david_chen_utility",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "risk_profiler",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "intervention_planner",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "description": "Structured risk assessment profile for housing stability.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client being assessed.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "eviction_risk_level": {
+                              "description": "The determined risk level of eviction or housing loss.",
+                              "enum": [
+                                "Low",
+                                "Medium",
+                                "High"
+                              ],
+                              "title": "Eviction Risk Level",
+                              "type": "string"
+                            },
+                            "risk_factors": {
+                              "description": "List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Risk Factors",
+                              "type": "array"
+                            },
+                            "stability_indicators": {
+                              "description": "List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Stability Indicators",
+                              "type": "array"
+                            },
+                            "narrative_summary": {
+                              "description": "A detailed summary of the client's current situation and their path toward instability.",
+                              "title": "Narrative Summary",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "eviction_risk_level",
+                            "risk_factors",
+                            "stability_indicators",
+                            "narrative_summary"
+                          ],
+                          "title": "RiskProfile",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\n1. Read the client's RiskProfile from the session history or state.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "$defs": {
+                            "ResourceRecommendation": {
+                              "description": "Details of a recommended local resource or assistance program.",
+                              "properties": {
+                                "resource_name": {
+                                  "description": "The name of the program or organization.",
+                                  "title": "Resource Name",
+                                  "type": "string"
+                                },
+                                "category": {
+                                  "description": "The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).",
+                                  "title": "Category",
+                                  "type": "string"
+                                },
+                                "contact_info": {
+                                  "description": "Phone number, email, or address for the resource.",
+                                  "title": "Contact Info",
+                                  "type": "string"
+                                },
+                                "relevance": {
+                                  "description": "Explanation of how this resource addresses the client's specific risk factors.",
+                                  "title": "Relevance",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "resource_name",
+                                "category",
+                                "contact_info",
+                                "relevance"
+                              ],
+                              "title": "ResourceRecommendation",
+                              "type": "object"
+                            }
+                          },
+                          "description": "Complete personalized intervention plan to prevent eviction/housing loss.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "immediate_steps": {
+                              "description": "A chronological checklist of immediate actions the client or social worker should take.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Immediate Steps",
+                              "type": "array"
+                            },
+                            "recommended_resources": {
+                              "description": "List of specific local programs recommended to mitigate the risk factors.",
+                              "items": {
+                                "$ref": "#/$defs/ResourceRecommendation"
+                              },
+                              "title": "Recommended Resources",
+                              "type": "array"
+                            },
+                            "follow_up_timeline": {
+                              "description": "Recommendation for when and how the next follow-up check-in should occur.",
+                              "title": "Follow Up Timeline",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "immediate_steps",
+                            "recommended_resources",
+                            "follow_up_timeline"
+                          ],
+                          "title": "InterventionPlan",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-a315d8bf-5428-4417-b72c-e256d00e6dba",
+                            "args": {
+                              "request": "David Chen is facing an imminent electricity shutoff. He is working part-time and cannot cover the bill. Assess the immediate risk factors and ask necessary clarifying questions to build a comprehensive RiskProfile."
+                            },
+                            "name": "risk_profiler",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "Thank you for providing the initial information about David Chen. The imminent electricity shutoff and insufficient income from part-time work are serious immediate risk factors.\n\nTo build a comprehensive Structured Risk Assessment Profile, I need to gather a few more critical details.\n\n**Initial Assessment:**\n\n*   **Client:** David Chen\n*   **Known Risk Factors:** Utility shutoff (imminent loss of essential service), Insufficient income (underemployment).\n*   **Known Stability Indicators:** Employed (part-time work).\n\n**Clarifying Questions:**\n\n1.  **Housing Security:**\n    *   Does Mr. Chen rent or own his residence?\n    *   If he rents, is he current on his monthly rent payments? If not, how many months behind is he?\n    *   What is the total amount of his monthly housing payment (rent/mortgage)?\n2.  **Financial Picture:**\n    *   What is the specific amount of the overdue electricity bill that is leading to the shutoff notice?\n    *   What is his approximate total monthly income from his part-time job?\n    *   Does he have any significant debts outside of his utility bill (e.g., medical debt, credit card debt, car payments)?\n3.  **Support and Benefits:**\n    *   Does Mr. Chen live alone, or does he have dependents (children, elderly relatives) living with him?\n    *   Is he currently receiving any government assistance (e.g., SNAP/Food Stamps, Medicaid, Unemployment, or Disability benefits)?\n    *   Does he have family or friends who might be able to offer financial or logistical support?\n\nOnce I have answers to these questions, I can accurately determine his eviction risk level, complete the lists of risk and stability factors, and write the detailed narrative summary.",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        },
+        {
+          "prompt": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "Hi, my name is Marcus. I'm just looking for general information on what programs are available for tenants in case I need them in the future. I'm currently employed and caught up on rent.",
+                "thought": null,
+                "thought_signature": null,
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null
+              }
+            ],
+            "role": "user"
+          },
+          "responses": [
+            {
+              "response": {
+                "parts": [
+                  {
+                    "media_resolution": null,
+                    "code_execution_result": null,
+                    "executable_code": null,
+                    "file_data": null,
+                    "function_call": null,
+                    "function_response": null,
+                    "inline_data": null,
+                    "text": "That's a very proactive and smart approach, Marcus. Understanding what resources are available is key to maintaining long-term housing stability.\n\nThe initial assessment confirms you are in a **Low-Risk** category, which is excellent. However, to shift from general advice to providing you with **specific, local programs** that you can bookmark and familiarize yourself with, I need one critical piece of information:\n\n**What is your general location (City, County, and State)?**\n\nOnce I have that, I can use the second tool in my workflow to search for relevant preventative resources like:\n\n1.  **Emergency Rental Assistance programs** (for unexpected job loss).\n2.  **Tenant Legal Aid and Hotlines** (for understanding rights and lease disputes).\n3.  **Mediation Services** (for landlord/tenant disagreements before they escalate).\n\nLet me know your location, and I will compile this resource list for you.",
+                    "thought": null,
+                    "thought_signature": null,
+                    "video_metadata": null,
+                    "tool_call": null,
+                    "tool_response": null,
+                    "part_metadata": null
+                  }
+                ],
+                "role": "model"
+              }
+            }
+          ],
+          "reference": null,
+          "system_instruction": null,
+          "conversation_history": null,
+          "rubric_groups": null,
+          "eval_case_id": "general_inquiry_low_risk",
+          "intermediate_events": null,
+          "agent_info": null,
+          "agent_data": {
+            "agents": {
+              "coordinator": {
+                "agent_id": "coordinator",
+                "agent_type": "LlmAgent",
+                "description": "",
+                "instruction": "You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\nFollow this exact workflow:\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "risk_profiler",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.",
+                        "name": "intervention_planner",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "request": {
+                              "description": "Detailed instructions or context for the task sub-agent.",
+                              "title": "Request",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "request"
+                          ],
+                          "title": "_DefaultTaskInput",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": [
+                  "risk_profiler",
+                  "intervention_planner"
+                ]
+              },
+              "risk_profiler": {
+                "agent_id": "risk_profiler",
+                "agent_type": "LlmAgent",
+                "description": "Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.",
+                "instruction": "You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\n1. Identify the client's name. If unknown, ask the user/social worker for it.\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\n4. Write a detailed narrative summary of the client's situation.\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "description": "Structured risk assessment profile for housing stability.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client being assessed.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "eviction_risk_level": {
+                              "description": "The determined risk level of eviction or housing loss.",
+                              "enum": [
+                                "Low",
+                                "Medium",
+                                "High"
+                              ],
+                              "title": "Eviction Risk Level",
+                              "type": "string"
+                            },
+                            "risk_factors": {
+                              "description": "List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Risk Factors",
+                              "type": "array"
+                            },
+                            "stability_indicators": {
+                              "description": "List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Stability Indicators",
+                              "type": "array"
+                            },
+                            "narrative_summary": {
+                              "description": "A detailed summary of the client's current situation and their path toward instability.",
+                              "title": "Narrative Summary",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "eviction_risk_level",
+                            "risk_factors",
+                            "stability_indicators",
+                            "narrative_summary"
+                          ],
+                          "title": "RiskProfile",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              },
+              "intervention_planner": {
+                "agent_id": "intervention_planner",
+                "agent_type": "LlmAgent",
+                "description": "Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.",
+                "instruction": "You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\n1. Read the client's RiskProfile from the session history or state.\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.",
+                "tools": [
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Searches the registry of local support resources to find assistance options.\n\nArgs:\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\n\nReturns:\n    A dict containing a list of matched resources.",
+                        "name": "search_resources",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "query": {
+                              "title": "Query",
+                              "type": "string"
+                            },
+                            "category": {
+                              "title": "Category",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query",
+                            "category"
+                          ],
+                          "title": "search_resourcesParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Saves the final generated intervention plan to the session artifacts repository.\n\nArgs:\n    client_name: The full name of the client.\n    plan_text: The complete written text of the intervention plan.\n\nReturns:\n    A dict indicating success and the filename where it was saved.",
+                        "name": "save_intervention_plan",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "properties": {
+                            "client_name": {
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "plan_text": {
+                              "title": "Plan Text",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "plan_text"
+                          ],
+                          "title": "save_intervention_planParams",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  },
+                  {
+                    "retrieval": null,
+                    "computer_use": null,
+                    "file_search": null,
+                    "google_search": null,
+                    "google_maps": null,
+                    "code_execution": null,
+                    "enterprise_web_search": null,
+                    "function_declarations": [
+                      {
+                        "description": "Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.",
+                        "name": "finish_task",
+                        "parameters": null,
+                        "parameters_json_schema": {
+                          "$defs": {
+                            "ResourceRecommendation": {
+                              "description": "Details of a recommended local resource or assistance program.",
+                              "properties": {
+                                "resource_name": {
+                                  "description": "The name of the program or organization.",
+                                  "title": "Resource Name",
+                                  "type": "string"
+                                },
+                                "category": {
+                                  "description": "The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).",
+                                  "title": "Category",
+                                  "type": "string"
+                                },
+                                "contact_info": {
+                                  "description": "Phone number, email, or address for the resource.",
+                                  "title": "Contact Info",
+                                  "type": "string"
+                                },
+                                "relevance": {
+                                  "description": "Explanation of how this resource addresses the client's specific risk factors.",
+                                  "title": "Relevance",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "resource_name",
+                                "category",
+                                "contact_info",
+                                "relevance"
+                              ],
+                              "title": "ResourceRecommendation",
+                              "type": "object"
+                            }
+                          },
+                          "description": "Complete personalized intervention plan to prevent eviction/housing loss.",
+                          "properties": {
+                            "client_name": {
+                              "description": "The name of the client.",
+                              "title": "Client Name",
+                              "type": "string"
+                            },
+                            "immediate_steps": {
+                              "description": "A chronological checklist of immediate actions the client or social worker should take.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "title": "Immediate Steps",
+                              "type": "array"
+                            },
+                            "recommended_resources": {
+                              "description": "List of specific local programs recommended to mitigate the risk factors.",
+                              "items": {
+                                "$ref": "#/$defs/ResourceRecommendation"
+                              },
+                              "title": "Recommended Resources",
+                              "type": "array"
+                            },
+                            "follow_up_timeline": {
+                              "description": "Recommendation for when and how the next follow-up check-in should occur.",
+                              "title": "Follow Up Timeline",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "client_name",
+                            "immediate_steps",
+                            "recommended_resources",
+                            "follow_up_timeline"
+                          ],
+                          "title": "InterventionPlan",
+                          "type": "object"
+                        },
+                        "response": null,
+                        "response_json_schema": null,
+                        "behavior": null
+                      }
+                    ],
+                    "google_search_retrieval": null,
+                    "parallel_ai_search": null,
+                    "url_context": null,
+                    "mcp_servers": null
+                  }
+                ],
+                "sub_agents": []
+              }
+            },
+            "turns": [
+              {
+                "turn_index": 0,
+                "turn_id": "turn_0",
+                "events": [
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-76242611-2447-4381-97b0-d6899fc4979a",
+                            "args": {
+                              "request": "Marcus is a tenant who is currently employed and stable but is proactively seeking general information about local tenant stability and assistance programs for future preparedness. Assess his current stability (which is low risk) and identify what key information (like his city/county/state) is missing to compile a list of relevant preventative programs. Structure the output as a general informational RiskProfile, focusing on preparedness resources rather than immediate crisis intervention."
+                            },
+                            "name": "risk_profiler",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": {
+                            "id": "adk-8394da77-3785-41de-8cdd-684fa9034696",
+                            "args": {
+                              "eviction_risk_level": "Low",
+                              "client_name": "Marcus",
+                              "risk_factors": [
+                                "Lack of Location-Specific Resource Knowledge (Information Gap)",
+                                "Future Income Loss (Hypothetical)",
+                                "Unexpected Major Expense (Hypothetical)",
+                                "Market-Driven Rent Increase (Hypothetical)"
+                              ],
+                              "narrative_summary": "Marcus presents as a highly stable, low-risk client who is proactively seeking information for future preparedness. He is currently employed and stable in his tenancy, indicating a strong foundation. His request is not driven by an immediate crisis but by a prudent desire to understand available preventative resources. This proactive engagement is a significant protective factor. To provide him with specific, actionable information regarding local tenant stability and assistance programs (such as rental assistance, legal aid hotlines, or utility bill relief programs), his geographic location (City, County, and State) is the critical missing piece of information. Without this detail, only general, non-local resources can be provided. The assessment focus is on informational preparedness to maintain his current stability.",
+                              "stability_indicators": [
+                                "Currently Employed and Stable Income",
+                                "Proactive Information Seeking and Preparedness Mindset",
+                                "Current Tenant Stability (No Arrears or Eviction Filings)",
+                                "Low-Risk Profile"
+                              ]
+                            },
+                            "name": "finish_task",
+                            "partial_args": null,
+                            "will_continue": null
+                          },
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "risk_profiler",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-8394da77-3785-41de-8cdd-684fa9034696",
+                            "name": "finish_task",
+                            "response": {
+                              "result": "Task completed."
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "user",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": {
+                            "will_continue": null,
+                            "scheduling": null,
+                            "parts": null,
+                            "id": "adk-76242611-2447-4381-97b0-d6899fc4979a",
+                            "name": "risk_profiler",
+                            "response": {
+                              "client_name": "Marcus",
+                              "eviction_risk_level": "Low",
+                              "risk_factors": [
+                                "Lack of Location-Specific Resource Knowledge (Information Gap)",
+                                "Future Income Loss (Hypothetical)",
+                                "Unexpected Major Expense (Hypothetical)",
+                                "Market-Driven Rent Increase (Hypothetical)"
+                              ],
+                              "stability_indicators": [
+                                "Currently Employed and Stable Income",
+                                "Proactive Information Seeking and Preparedness Mindset",
+                                "Current Tenant Stability (No Arrears or Eviction Filings)",
+                                "Low-Risk Profile"
+                              ],
+                              "narrative_summary": "Marcus presents as a highly stable, low-risk client who is proactively seeking information for future preparedness. He is currently employed and stable in his tenancy, indicating a strong foundation. His request is not driven by an immediate crisis but by a prudent desire to understand available preventative resources. This proactive engagement is a significant protective factor. To provide him with specific, actionable information regarding local tenant stability and assistance programs (such as rental assistance, legal aid hotlines, or utility bill relief programs), his geographic location (City, County, and State) is the critical missing piece of information. Without this detail, only general, non-local resources can be provided. The assessment focus is on informational preparedness to maintain his current stability."
+                            }
+                          },
+                          "inline_data": null,
+                          "text": null,
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "user"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  },
+                  {
+                    "author": "coordinator",
+                    "content": {
+                      "parts": [
+                        {
+                          "media_resolution": null,
+                          "code_execution_result": null,
+                          "executable_code": null,
+                          "file_data": null,
+                          "function_call": null,
+                          "function_response": null,
+                          "inline_data": null,
+                          "text": "That's a very proactive and smart approach, Marcus. Understanding what resources are available is key to maintaining long-term housing stability.\n\nThe initial assessment confirms you are in a **Low-Risk** category, which is excellent. However, to shift from general advice to providing you with **specific, local programs** that you can bookmark and familiarize yourself with, I need one critical piece of information:\n\n**What is your general location (City, County, and State)?**\n\nOnce I have that, I can use the second tool in my workflow to search for relevant preventative resources like:\n\n1.  **Emergency Rental Assistance programs** (for unexpected job loss).\n2.  **Tenant Legal Aid and Hotlines** (for understanding rights and lease disputes).\n3.  **Mediation Services** (for landlord/tenant disagreements before they escalate).\n\nLet me know your location, and I will compile this resource list for you.",
+                          "thought": null,
+                          "thought_signature": null,
+                          "video_metadata": null,
+                          "tool_call": null,
+                          "tool_response": null,
+                          "part_metadata": null
+                        }
+                      ],
+                      "role": "model"
+                    },
+                    "event_time": null,
+                    "state_delta": null,
+                    "active_tools": null
+                  }
+                ]
+              }
+            ]
+          },
+          "user_scenario": null
+        }
+      ],
+      "eval_dataset_df": null,
+      "candidate_name": null
+    }
+  ],
+  "metadata": {
+    "candidate_names": [
+      "candidate_1"
+    ],
+    "dataset_name": null,
+    "dataset_id": null,
+    "creation_timestamp": "2026-06-22T16:53:53.864300Z",
+    "dataset": [
+      {
+        "prompt_display_text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do.\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "Thank you for providing the initial information on Sarah Jenkins. The situation is dire, with multiple severe risk factors already identified.\n\nTo create the required comprehensive and accurate RiskProfile, I need to gather a few more details, specifically regarding her potential stability indicators or protective factors.\n\nCould you please provide the following information:\n\n1.  **Support Network/Income:** Does Sarah have any income (e.g., unemployment benefits, part-time work, temporary gig work) or a support network (family, friends, church) who can offer temporary financial or emotional assistance?\n2.  **Resources:** Has Sarah applied for any rental assistance programs or public benefits (like SNAP/food stamps)? Does she have any savings or assets she can draw upon?",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Thank you for providing the initial information on Sarah Jenkins. The situation is dire, with multiple severe risk factors already identified.\\n\\nTo create the required comprehensive and accurate RiskProfile, I need to gather a few more details, specifically regarding her potential stability indicators or protective factors.\\n\\nCould you please provide the following information:\\n\\n1.  **Support Network/Income:** Does Sarah have any income (e.g., unemployment benefits, part-time work, temporary gig work) or a support network (family, friends, church) who can offer temporary financial or emotional assistance?\\n2.  **Resources:** Has Sarah applied for any rental assistance programs or public benefits (like SNAP/food stamps)? Does she have any savings or assets she can draw upon?\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"risk_profiler\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"intervention_planner\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"description\": \"Structured risk assessment profile for housing stability.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client being assessed.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"eviction_risk_level\": {\"description\": \"The determined risk level of eviction or housing loss.\", \"enum\": [\"Low\", \"Medium\", \"High\"], \"title\": \"Eviction Risk Level\", \"type\": \"string\"}, \"risk_factors\": {\"description\": \"List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).\", \"items\": {\"type\": \"string\"}, \"title\": \"Risk Factors\", \"type\": \"array\"}, \"stability_indicators\": {\"description\": \"List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).\", \"items\": {\"type\": \"string\"}, \"title\": \"Stability Indicators\", \"type\": \"array\"}, \"narrative_summary\": {\"description\": \"A detailed summary of the client's current situation and their path toward instability.\", \"title\": \"Narrative Summary\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"eviction_risk_level\", \"risk_factors\", \"stability_indicators\", \"narrative_summary\"], \"title\": \"RiskProfile\", \"type\": \"object\"}}]}], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\\n1. Read the client's RiskProfile from the session history or state.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"$defs\": {\"ResourceRecommendation\": {\"description\": \"Details of a recommended local resource or assistance program.\", \"properties\": {\"resource_name\": {\"description\": \"The name of the program or organization.\", \"title\": \"Resource Name\", \"type\": \"string\"}, \"category\": {\"description\": \"The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).\", \"title\": \"Category\", \"type\": \"string\"}, \"contact_info\": {\"description\": \"Phone number, email, or address for the resource.\", \"title\": \"Contact Info\", \"type\": \"string\"}, \"relevance\": {\"description\": \"Explanation of how this resource addresses the client's specific risk factors.\", \"title\": \"Relevance\", \"type\": \"string\"}}, \"required\": [\"resource_name\", \"category\", \"contact_info\", \"relevance\"], \"title\": \"ResourceRecommendation\", \"type\": \"object\"}}, \"description\": \"Complete personalized intervention plan to prevent eviction/housing loss.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"immediate_steps\": {\"description\": \"A chronological checklist of immediate actions the client or social worker should take.\", \"items\": {\"type\": \"string\"}, \"title\": \"Immediate Steps\", \"type\": \"array\"}, \"recommended_resources\": {\"description\": \"List of specific local programs recommended to mitigate the risk factors.\", \"items\": {\"$ref\": \"#/$defs/ResourceRecommendation\"}, \"title\": \"Recommended Resources\", \"type\": \"array\"}, \"follow_up_timeline\": {\"description\": \"Recommendation for when and how the next follow-up check-in should occur.\", \"title\": \"Follow Up Timeline\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"immediate_steps\", \"recommended_resources\", \"follow_up_timeline\"], \"title\": \"InterventionPlan\", \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-86fcf4d5-da1d-41bb-b655-62e10b5c00fa\", \"args\": {\"request\": \"Analyze the following client situation: The client is Sarah Jenkins. She lost her job last month, has a huge hospital bill, is two months behind on rent, and her landlord is threatening eviction. Please compile a comprehensive RiskProfile, ensuring all key risk factors (financial, legal, medical, employment) are assessed. Ask any necessary clarifying questions to complete the profile.\"}, \"name\": \"risk_profiler\"}}], \"role\": \"model\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"text\": \"Thank you for providing the initial information on Sarah Jenkins. The situation is dire, with multiple severe risk factors already identified.\\n\\nTo create the required comprehensive and accurate RiskProfile, I need to gather a few more details, specifically regarding her potential stability indicators or protective factors.\\n\\nCould you please provide the following information:\\n\\n1.  **Support Network/Income:** Does Sarah have any income (e.g., unemployment benefits, part-time work, temporary gig work) or a support network (family, friends, church) who can offer temporary financial or emotional assistance?\\n2.  **Resources:** Has Sarah applied for any rental assistance programs or public benefits (like SNAP/food stamps)? Does she have any savings or assets she can draw upon?\"}], \"role\": \"model\"}}]}]}"
+      },
+      {
+        "prompt_display_text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "Thank you for providing the initial information about David Chen. The imminent electricity shutoff and insufficient income from part-time work are serious immediate risk factors.\n\nTo build a comprehensive Structured Risk Assessment Profile, I need to gather a few more critical details.\n\n**Initial Assessment:**\n\n*   **Client:** David Chen\n*   **Known Risk Factors:** Utility shutoff (imminent loss of essential service), Insufficient income (underemployment).\n*   **Known Stability Indicators:** Employed (part-time work).\n\n**Clarifying Questions:**\n\n1.  **Housing Security:**\n    *   Does Mr. Chen rent or own his residence?\n    *   If he rents, is he current on his monthly rent payments? If not, how many months behind is he?\n    *   What is the total amount of his monthly housing payment (rent/mortgage)?\n2.  **Financial Picture:**\n    *   What is the specific amount of the overdue electricity bill that is leading to the shutoff notice?\n    *   What is his approximate total monthly income from his part-time job?\n    *   Does he have any significant debts outside of his utility bill (e.g., medical debt, credit card debt, car payments)?\n3.  **Support and Benefits:**\n    *   Does Mr. Chen live alone, or does he have dependents (children, elderly relatives) living with him?\n    *   Is he currently receiving any government assistance (e.g., SNAP/Food Stamps, Medicaid, Unemployment, or Disability benefits)?\n    *   Does he have family or friends who might be able to offer financial or logistical support?\n\nOnce I have answers to these questions, I can accurately determine his eviction risk level, complete the lists of risk and stability factors, and write the detailed narrative summary.",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Thank you for providing the initial information about David Chen. The imminent electricity shutoff and insufficient income from part-time work are serious immediate risk factors.\\n\\nTo build a comprehensive Structured Risk Assessment Profile, I need to gather a few more critical details.\\n\\n**Initial Assessment:**\\n\\n*   **Client:** David Chen\\n*   **Known Risk Factors:** Utility shutoff (imminent loss of essential service), Insufficient income (underemployment).\\n*   **Known Stability Indicators:** Employed (part-time work).\\n\\n**Clarifying Questions:**\\n\\n1.  **Housing Security:**\\n    *   Does Mr. Chen rent or own his residence?\\n    *   If he rents, is he current on his monthly rent payments? If not, how many months behind is he?\\n    *   What is the total amount of his monthly housing payment (rent/mortgage)?\\n2.  **Financial Picture:**\\n    *   What is the specific amount of the overdue electricity bill that is leading to the shutoff notice?\\n    *   What is his approximate total monthly income from his part-time job?\\n    *   Does he have any significant debts outside of his utility bill (e.g., medical debt, credit card debt, car payments)?\\n3.  **Support and Benefits:**\\n    *   Does Mr. Chen live alone, or does he have dependents (children, elderly relatives) living with him?\\n    *   Is he currently receiving any government assistance (e.g., SNAP/Food Stamps, Medicaid, Unemployment, or Disability benefits)?\\n    *   Does he have family or friends who might be able to offer financial or logistical support?\\n\\nOnce I have answers to these questions, I can accurately determine his eviction risk level, complete the lists of risk and stability factors, and write the detailed narrative summary.\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"risk_profiler\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"intervention_planner\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"description\": \"Structured risk assessment profile for housing stability.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client being assessed.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"eviction_risk_level\": {\"description\": \"The determined risk level of eviction or housing loss.\", \"enum\": [\"Low\", \"Medium\", \"High\"], \"title\": \"Eviction Risk Level\", \"type\": \"string\"}, \"risk_factors\": {\"description\": \"List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).\", \"items\": {\"type\": \"string\"}, \"title\": \"Risk Factors\", \"type\": \"array\"}, \"stability_indicators\": {\"description\": \"List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).\", \"items\": {\"type\": \"string\"}, \"title\": \"Stability Indicators\", \"type\": \"array\"}, \"narrative_summary\": {\"description\": \"A detailed summary of the client's current situation and their path toward instability.\", \"title\": \"Narrative Summary\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"eviction_risk_level\", \"risk_factors\", \"stability_indicators\", \"narrative_summary\"], \"title\": \"RiskProfile\", \"type\": \"object\"}}]}], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\\n1. Read the client's RiskProfile from the session history or state.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"$defs\": {\"ResourceRecommendation\": {\"description\": \"Details of a recommended local resource or assistance program.\", \"properties\": {\"resource_name\": {\"description\": \"The name of the program or organization.\", \"title\": \"Resource Name\", \"type\": \"string\"}, \"category\": {\"description\": \"The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).\", \"title\": \"Category\", \"type\": \"string\"}, \"contact_info\": {\"description\": \"Phone number, email, or address for the resource.\", \"title\": \"Contact Info\", \"type\": \"string\"}, \"relevance\": {\"description\": \"Explanation of how this resource addresses the client's specific risk factors.\", \"title\": \"Relevance\", \"type\": \"string\"}}, \"required\": [\"resource_name\", \"category\", \"contact_info\", \"relevance\"], \"title\": \"ResourceRecommendation\", \"type\": \"object\"}}, \"description\": \"Complete personalized intervention plan to prevent eviction/housing loss.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"immediate_steps\": {\"description\": \"A chronological checklist of immediate actions the client or social worker should take.\", \"items\": {\"type\": \"string\"}, \"title\": \"Immediate Steps\", \"type\": \"array\"}, \"recommended_resources\": {\"description\": \"List of specific local programs recommended to mitigate the risk factors.\", \"items\": {\"$ref\": \"#/$defs/ResourceRecommendation\"}, \"title\": \"Recommended Resources\", \"type\": \"array\"}, \"follow_up_timeline\": {\"description\": \"Recommendation for when and how the next follow-up check-in should occur.\", \"title\": \"Follow Up Timeline\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"immediate_steps\", \"recommended_resources\", \"follow_up_timeline\"], \"title\": \"InterventionPlan\", \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-a315d8bf-5428-4417-b72c-e256d00e6dba\", \"args\": {\"request\": \"David Chen is facing an imminent electricity shutoff. He is working part-time and cannot cover the bill. Assess the immediate risk factors and ask necessary clarifying questions to build a comprehensive RiskProfile.\"}, \"name\": \"risk_profiler\"}}], \"role\": \"model\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"text\": \"Thank you for providing the initial information about David Chen. The imminent electricity shutoff and insufficient income from part-time work are serious immediate risk factors.\\n\\nTo build a comprehensive Structured Risk Assessment Profile, I need to gather a few more critical details.\\n\\n**Initial Assessment:**\\n\\n*   **Client:** David Chen\\n*   **Known Risk Factors:** Utility shutoff (imminent loss of essential service), Insufficient income (underemployment).\\n*   **Known Stability Indicators:** Employed (part-time work).\\n\\n**Clarifying Questions:**\\n\\n1.  **Housing Security:**\\n    *   Does Mr. Chen rent or own his residence?\\n    *   If he rents, is he current on his monthly rent payments? If not, how many months behind is he?\\n    *   What is the total amount of his monthly housing payment (rent/mortgage)?\\n2.  **Financial Picture:**\\n    *   What is the specific amount of the overdue electricity bill that is leading to the shutoff notice?\\n    *   What is his approximate total monthly income from his part-time job?\\n    *   Does he have any significant debts outside of his utility bill (e.g., medical debt, credit card debt, car payments)?\\n3.  **Support and Benefits:**\\n    *   Does Mr. Chen live alone, or does he have dependents (children, elderly relatives) living with him?\\n    *   Is he currently receiving any government assistance (e.g., SNAP/Food Stamps, Medicaid, Unemployment, or Disability benefits)?\\n    *   Does he have family or friends who might be able to offer financial or logistical support?\\n\\nOnce I have answers to these questions, I can accurately determine his eviction risk level, complete the lists of risk and stability factors, and write the detailed narrative summary.\"}], \"role\": \"model\"}}]}]}"
+      },
+      {
+        "prompt_display_text": "Hi, my name is Marcus. I'm just looking for general information on what programs are available for tenants in case I need them in the future. I'm currently employed and caught up on rent.",
+        "prompt_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"Hi, my name is Marcus. I'm just looking for general information on what programs are available for tenants in case I need them in the future. I'm currently employed and caught up on rent.\"\n    }\n  ],\n  \"role\": \"user\"\n}",
+        "reference": "",
+        "reference_raw_json": "",
+        "response_display_text": "That's a very proactive and smart approach, Marcus. Understanding what resources are available is key to maintaining long-term housing stability.\n\nThe initial assessment confirms you are in a **Low-Risk** category, which is excellent. However, to shift from general advice to providing you with **specific, local programs** that you can bookmark and familiarize yourself with, I need one critical piece of information:\n\n**What is your general location (City, County, and State)?**\n\nOnce I have that, I can use the second tool in my workflow to search for relevant preventative resources like:\n\n1.  **Emergency Rental Assistance programs** (for unexpected job loss).\n2.  **Tenant Legal Aid and Hotlines** (for understanding rights and lease disputes).\n3.  **Mediation Services** (for landlord/tenant disagreements before they escalate).\n\nLet me know your location, and I will compile this resource list for you.",
+        "response_raw_json": "{\n  \"parts\": [\n    {\n      \"text\": \"That's a very proactive and smart approach, Marcus. Understanding what resources are available is key to maintaining long-term housing stability.\\n\\nThe initial assessment confirms you are in a **Low-Risk** category, which is excellent. However, to shift from general advice to providing you with **specific, local programs** that you can bookmark and familiarize yourself with, I need one critical piece of information:\\n\\n**What is your general location (City, County, and State)?**\\n\\nOnce I have that, I can use the second tool in my workflow to search for relevant preventative resources like:\\n\\n1.  **Emergency Rental Assistance programs** (for unexpected job loss).\\n2.  **Tenant Legal Aid and Hotlines** (for understanding rights and lease disputes).\\n3.  **Mediation Services** (for landlord/tenant disagreements before they escalate).\\n\\nLet me know your location, and I will compile this resource list for you.\"\n    }\n  ],\n  \"role\": \"model\"\n}",
+        "intermediate_events": null,
+        "agent_data": "{\"agents\": {\"coordinator\": {\"agent_id\": \"coordinator\", \"agent_type\": \"LlmAgent\", \"description\": \"\", \"instruction\": \"You are the Preventable Pathways Coordinator Agent. Your job is to help users (like social workers or case managers) assess housing stability risks and build actionable prevention plans.\\nFollow this exact workflow:\\n1. When the user introduces a client's case or situation, delegate to the `risk_profiler` sub-agent to gather information and compile the structured RiskProfile.\\n2. Once the `risk_profiler` has finished and returned the RiskProfile, delegate to the `intervention_planner` sub-agent to find local resources, draft the intervention plan, and save it to the session artifacts.\\n3. Once both sub-agents have completed their tasks, summarize the final risk assessment and the key resource recommendations. Explicitly inform the user that the complete action plan has been saved to their session artifacts (e.g., intervention_<client_name>.txt) and explain how they can download/access it.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"risk_profiler\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\\nIMPORTANT: This tool delegates execution to a specialized agent. Do NOT call this tool in parallel with any other tools.\", \"name\": \"intervention_planner\", \"parameters_json_schema\": {\"properties\": {\"request\": {\"description\": \"Detailed instructions or context for the task sub-agent.\", \"title\": \"Request\", \"type\": \"string\"}}, \"required\": [\"request\"], \"title\": \"_DefaultTaskInput\", \"type\": \"object\"}, \"response_json_schema\": {\"type\": \"object\"}}]}], \"sub_agents\": [\"risk_profiler\", \"intervention_planner\"]}, \"risk_profiler\": {\"agent_id\": \"risk_profiler\", \"agent_type\": \"LlmAgent\", \"description\": \"Analyzes the client's current situation, asks clarifying questions if key details are missing, and builds a structured RiskProfile.\", \"instruction\": \"You are the Risk Profiler Agent. Your goal is to assess a client's housing stability risk and compile a structured RiskProfile.\\n1. Identify the client's name. If unknown, ask the user/social worker for it.\\n2. Identify specific risk factors (e.g., job loss, medical bills, rent increase) and protective factors (e.g., family support, employment).\\n3. Determine the eviction risk level ('Low', 'Medium', or 'High') based on the severity of risk factors.\\n4. Write a detailed narrative summary of the client's situation.\\nIf you do not have enough information, ask the user clarifying questions. Once you have gathered the required details and filled out all fields in the RiskProfile schema, call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"description\": \"Structured risk assessment profile for housing stability.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client being assessed.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"eviction_risk_level\": {\"description\": \"The determined risk level of eviction or housing loss.\", \"enum\": [\"Low\", \"Medium\", \"High\"], \"title\": \"Eviction Risk Level\", \"type\": \"string\"}, \"risk_factors\": {\"description\": \"List of identified risk factors (e.g., job_loss, medical_debt, utility_shutoff, rent_increase).\", \"items\": {\"type\": \"string\"}, \"title\": \"Risk Factors\", \"type\": \"array\"}, \"stability_indicators\": {\"description\": \"List of positive stability indicators or protective factors (e.g., family_support, employed, public_benefits).\", \"items\": {\"type\": \"string\"}, \"title\": \"Stability Indicators\", \"type\": \"array\"}, \"narrative_summary\": {\"description\": \"A detailed summary of the client's current situation and their path toward instability.\", \"title\": \"Narrative Summary\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"eviction_risk_level\", \"risk_factors\", \"stability_indicators\", \"narrative_summary\"], \"title\": \"RiskProfile\", \"type\": \"object\"}}]}], \"sub_agents\": []}, \"intervention_planner\": {\"agent_id\": \"intervention_planner\", \"agent_type\": \"LlmAgent\", \"description\": \"Takes a compiled RiskProfile, searches for matching local resources using tools, designs a customized action plan, and saves it to artifacts.\", \"instruction\": \"You are the Intervention Planner Agent. Your goal is to design a personalized, resource-grounded InterventionPlan for the client.\\n1. Read the client's RiskProfile from the session history or state.\\n2. Use the search_resources tool to find local assistance programs (e.g., Rental Assistance, Legal Aid, Utility Assistance) that address the client's specific risk factors. You MUST search for resources using this tool, do not make them up.\\n3. Formulate a list of chronological, actionable immediate steps for the client/social worker.\\n4. Construct the InterventionPlan, including the recommended resources with their contacts and relevance explanations.\\n5. You MUST save the complete text representation of the intervention plan to the session artifacts using the save_intervention_plan tool. This is a critical step.\\nOnce you have built the plan and successfully saved it, output the final InterventionPlan schema and call finish_task.\", \"tools\": [{\"function_declarations\": [{\"description\": \"Searches the registry of local support resources to find assistance options.\\n\\nArgs:\\n    query: Keywords to search for in resource descriptions (e.g., 'rent', 'energy', 'court', 'food').\\n    category: The specific service category (e.g., 'Rental Assistance', 'Legal Aid', 'Food Security', 'Utility Assistance', 'Family Support', 'Any').\\n\\nReturns:\\n    A dict containing a list of matched resources.\", \"name\": \"search_resources\", \"parameters_json_schema\": {\"properties\": {\"query\": {\"title\": \"Query\", \"type\": \"string\"}, \"category\": {\"title\": \"Category\", \"type\": \"string\"}}, \"required\": [\"query\", \"category\"], \"title\": \"search_resourcesParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Saves the final generated intervention plan to the session artifacts repository.\\n\\nArgs:\\n    client_name: The full name of the client.\\n    plan_text: The complete written text of the intervention plan.\\n\\nReturns:\\n    A dict indicating success and the filename where it was saved.\", \"name\": \"save_intervention_plan\", \"parameters_json_schema\": {\"properties\": {\"client_name\": {\"title\": \"Client Name\", \"type\": \"string\"}, \"plan_text\": {\"title\": \"Plan Text\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"plan_text\"], \"title\": \"save_intervention_planParams\", \"type\": \"object\"}, \"response_json_schema\": {\"additionalProperties\": true, \"type\": \"object\"}}]}, {\"function_declarations\": [{\"description\": \"Signal that this agent has completed its delegated task. Call this when you have finished your delegated task. Pass the required output data in the parameters.\", \"name\": \"finish_task\", \"parameters_json_schema\": {\"$defs\": {\"ResourceRecommendation\": {\"description\": \"Details of a recommended local resource or assistance program.\", \"properties\": {\"resource_name\": {\"description\": \"The name of the program or organization.\", \"title\": \"Resource Name\", \"type\": \"string\"}, \"category\": {\"description\": \"The category of assistance (e.g., Rental Assistance, Legal Aid, Food Security, Utility Assistance).\", \"title\": \"Category\", \"type\": \"string\"}, \"contact_info\": {\"description\": \"Phone number, email, or address for the resource.\", \"title\": \"Contact Info\", \"type\": \"string\"}, \"relevance\": {\"description\": \"Explanation of how this resource addresses the client's specific risk factors.\", \"title\": \"Relevance\", \"type\": \"string\"}}, \"required\": [\"resource_name\", \"category\", \"contact_info\", \"relevance\"], \"title\": \"ResourceRecommendation\", \"type\": \"object\"}}, \"description\": \"Complete personalized intervention plan to prevent eviction/housing loss.\", \"properties\": {\"client_name\": {\"description\": \"The name of the client.\", \"title\": \"Client Name\", \"type\": \"string\"}, \"immediate_steps\": {\"description\": \"A chronological checklist of immediate actions the client or social worker should take.\", \"items\": {\"type\": \"string\"}, \"title\": \"Immediate Steps\", \"type\": \"array\"}, \"recommended_resources\": {\"description\": \"List of specific local programs recommended to mitigate the risk factors.\", \"items\": {\"$ref\": \"#/$defs/ResourceRecommendation\"}, \"title\": \"Recommended Resources\", \"type\": \"array\"}, \"follow_up_timeline\": {\"description\": \"Recommendation for when and how the next follow-up check-in should occur.\", \"title\": \"Follow Up Timeline\", \"type\": \"string\"}}, \"required\": [\"client_name\", \"immediate_steps\", \"recommended_resources\", \"follow_up_timeline\"], \"title\": \"InterventionPlan\", \"type\": \"object\"}}]}], \"sub_agents\": []}}, \"turns\": [{\"turn_index\": 0, \"turn_id\": \"turn_0\", \"events\": [{\"author\": \"coordinator\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-76242611-2447-4381-97b0-d6899fc4979a\", \"args\": {\"request\": \"Marcus is a tenant who is currently employed and stable but is proactively seeking general information about local tenant stability and assistance programs for future preparedness. Assess his current stability (which is low risk) and identify what key information (like his city/county/state) is missing to compile a list of relevant preventative programs. Structure the output as a general informational RiskProfile, focusing on preparedness resources rather than immediate crisis intervention.\"}, \"name\": \"risk_profiler\"}}], \"role\": \"model\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"function_call\": {\"id\": \"adk-8394da77-3785-41de-8cdd-684fa9034696\", \"args\": {\"eviction_risk_level\": \"Low\", \"client_name\": \"Marcus\", \"risk_factors\": [\"Lack of Location-Specific Resource Knowledge (Information Gap)\", \"Future Income Loss (Hypothetical)\", \"Unexpected Major Expense (Hypothetical)\", \"Market-Driven Rent Increase (Hypothetical)\"], \"narrative_summary\": \"Marcus presents as a highly stable, low-risk client who is proactively seeking information for future preparedness. He is currently employed and stable in his tenancy, indicating a strong foundation. His request is not driven by an immediate crisis but by a prudent desire to understand available preventative resources. This proactive engagement is a significant protective factor. To provide him with specific, actionable information regarding local tenant stability and assistance programs (such as rental assistance, legal aid hotlines, or utility bill relief programs), his geographic location (City, County, and State) is the critical missing piece of information. Without this detail, only general, non-local resources can be provided. The assessment focus is on informational preparedness to maintain his current stability.\", \"stability_indicators\": [\"Currently Employed and Stable Income\", \"Proactive Information Seeking and Preparedness Mindset\", \"Current Tenant Stability (No Arrears or Eviction Filings)\", \"Low-Risk Profile\"]}, \"name\": \"finish_task\"}}], \"role\": \"model\"}}, {\"author\": \"risk_profiler\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-8394da77-3785-41de-8cdd-684fa9034696\", \"name\": \"finish_task\", \"response\": {\"result\": \"Task completed.\"}}}], \"role\": \"user\"}}, {\"author\": \"user\", \"content\": {\"parts\": [{\"function_response\": {\"id\": \"adk-76242611-2447-4381-97b0-d6899fc4979a\", \"name\": \"risk_profiler\", \"response\": {\"client_name\": \"Marcus\", \"eviction_risk_level\": \"Low\", \"risk_factors\": [\"Lack of Location-Specific Resource Knowledge (Information Gap)\", \"Future Income Loss (Hypothetical)\", \"Unexpected Major Expense (Hypothetical)\", \"Market-Driven Rent Increase (Hypothetical)\"], \"stability_indicators\": [\"Currently Employed and Stable Income\", \"Proactive Information Seeking and Preparedness Mindset\", \"Current Tenant Stability (No Arrears or Eviction Filings)\", \"Low-Risk Profile\"], \"narrative_summary\": \"Marcus presents as a highly stable, low-risk client who is proactively seeking information for future preparedness. He is currently employed and stable in his tenancy, indicating a strong foundation. His request is not driven by an immediate crisis but by a prudent desire to understand available preventative resources. This proactive engagement is a significant protective factor. To provide him with specific, actionable information regarding local tenant stability and assistance programs (such as rental assistance, legal aid hotlines, or utility bill relief programs), his geographic location (City, County, and State) is the critical missing piece of information. Without this detail, only general, non-local resources can be provided. The assessment focus is on informational preparedness to maintain his current stability.\"}}}], \"role\": \"user\"}}, {\"author\": \"coordinator\", \"content\": {\"parts\": [{\"text\": \"That's a very proactive and smart approach, Marcus. Understanding what resources are available is key to maintaining long-term housing stability.\\n\\nThe initial assessment confirms you are in a **Low-Risk** category, which is excellent. However, to shift from general advice to providing you with **specific, local programs** that you can bookmark and familiarize yourself with, I need one critical piece of information:\\n\\n**What is your general location (City, County, and State)?**\\n\\nOnce I have that, I can use the second tool in my workflow to search for relevant preventative resources like:\\n\\n1.  **Emergency Rental Assistance programs** (for unexpected job loss).\\n2.  **Tenant Legal Aid and Hotlines** (for understanding rights and lease disputes).\\n3.  **Mediation Services** (for landlord/tenant disagreements before they escalate).\\n\\nLet me know your location, and I will compile this resource list for you.\"}], \"role\": \"model\"}}]}]}"
+      }
+    ]
+  },
+  "agent_info": null
+}

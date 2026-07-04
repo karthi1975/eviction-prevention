@@ -1,0 +1,25 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "sarah_jenkins_eviction",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Help me. My name is Sarah Jenkins. I lost my job last month and now I have a huge hospital bill. I'm behind on rent by two months and my landlord is threatening eviction. I don't know what to do."}]
+      }
+    },
+    {
+      "eval_case_id": "david_chen_utility",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "My name is David Chen. I received a final shutoff notice for my electricity. I'm working part-time and can't cover it. Can you help?"}]
+      }
+    },
+    {
+      "eval_case_id": "general_inquiry_low_risk",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Can you help me with a client case? His name is Marcus. He is currently employed and caught up on rent, but he wants to know what resources exist in case of future emergencies."}]
+      }
+    }
+  ]
+}
