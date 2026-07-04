@@ -36,7 +36,7 @@ sequenceDiagram
     participant Coord as Coordinator Agent (Root)
     participant RP as Risk Profiler Agent
     participant IP as Intervention Planner Agent
-    database DB as SQLite (evictions.db)
+    participant DB as "SQLite Database (evictions.db)"
     
     SocialWorker->>UI: Types case details (e.g. "Alice Vance in Harlem...")
     UI->>Coord: Send SSE Stream Request
